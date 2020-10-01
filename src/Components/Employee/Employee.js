@@ -1,8 +1,11 @@
 import React from 'react';
 import { Card } from 'react-bootstrap';
-import Col from "react-bootstrap/Col";
 
 export const Employee = (props) => {
+    const handleClick = () => {
+        props.removeEmployee(props.id);
+    }
+
     return(
             <Card>
                 <Card.Header>Employee</Card.Header>
@@ -10,7 +13,7 @@ export const Employee = (props) => {
                 <Card.Body>
                     <Card.Text>{props.name} {props.surname}</Card.Text>
                 </Card.Body>
-                <Card.Footer style={{color:"red"}} onClick={() => props.removeEmployee(props.id)}>Delete</Card.Footer>
+                <Card.Footer style={{color:"red", cursor: "pointer"}} onClick={handleClick}>Delete</Card.Footer>
             </Card>
     )
 }

@@ -35,7 +35,9 @@ function App() {
   }
 
   const removeEmployee= (id) => {
-    employees.forEach()
+    //Improvement: Use map instead of array for employee's.
+    var newEmployees = employees.filter(e => e.id !== id)
+    setEmployees(newEmployees)
   }
 
 
@@ -53,7 +55,7 @@ function App() {
             <Switch>
               <Route exact path="/" component={ Home }></Route>
               <Route path="/employees">
-                <EmployeeView employees={employees} addEmployee={addNewEmployee}></EmployeeView>
+                <EmployeeView employees={employees} addEmployee={addNewEmployee} removeEmployee={removeEmployee}></EmployeeView>
               </Route>
             </Switch>
           </Container>
