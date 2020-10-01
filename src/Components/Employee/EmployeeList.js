@@ -1,5 +1,6 @@
 import React from 'react';
 import {Employee} from './Employee';
+import Row from "react-bootstrap/Row";
 
 export const EmployeeList = (props) => {
     function getEmployees(){
@@ -9,9 +10,9 @@ export const EmployeeList = (props) => {
     }
 
     return (
-        <div className={"card-deck"}>
+        <Row>
             {getEmployees()}
-        </div>)
-
+        </Row>
+    )
 }
 
