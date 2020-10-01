@@ -8,12 +8,22 @@ import Navbar from 'react-bootstrap/Navbar';
 import Nav from 'react-bootstrap/Nav';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
+//Variable which mocks a database's auto incremental
+let idGenerator = 0;
+
+const GenerateId = () => {
+  return ++idGenerator;
+}
+
+
 //Default employees
 let employeeArray = [
-  { title: "Michael", position: "Samson" },
-  { title: "Jordan", position: "Smith" },
-  { title: "Samuel", position: "Schanwzky" },
+  { id:GenerateId(), name: "Michael", surname: "Samson" },
+  { id:GenerateId(), name: "Jordan", surname: "Smith" },
+  { id:GenerateId(), name: "Samuel", surname: "Schanwzky" },
 ];
+
+
 
 
 function App() {
@@ -22,6 +32,10 @@ function App() {
   const addNewEmployee = (newEmployee) => {
     //Combines previous employees with new employee
     setEmployees(...employees, newEmployee);
+  }
+
+  const removeEmployee= (id) => {
+    employees.forEach()
   }
 
 
