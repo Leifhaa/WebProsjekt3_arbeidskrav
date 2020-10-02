@@ -19,9 +19,9 @@ const GenerateId = () => {
 
 //Default employees
 let employeeArray = [
-  { id:GenerateId(), name: "Michael", surname: "Samson" },
-  { id:GenerateId(), name: "Jordan", surname: "Smith" },
-  { id:GenerateId(), name: "Samuel", surname: "Schanwzky" },
+  { id:GenerateId(), name: "Michael", surname: "Samson", description: "A efficient worker who does everything he is asked!" },
+  { id:GenerateId(), name: "Jordan", surname: "Smith" , description: "Lazy boy. But has much experience."},
+  { id:GenerateId(), name: "Samuel", surname: "Schanwzky", description: "Knows mostly electricity work." },
 ];
 
 //Default projects
@@ -47,11 +47,12 @@ function App() {
   },[]);
 
 
-  const addNewEmployee = (name, surname) => {
+  const addNewEmployee = (name, surname, description) => {
     const added = {
       id:GenerateId(),
       name:name,
       surname:surname,
+      description:description,
       img:surname
     }
     const newEmployees = [...employees, added]

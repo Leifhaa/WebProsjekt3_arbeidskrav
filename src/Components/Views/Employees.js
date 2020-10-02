@@ -4,6 +4,7 @@ import {EmployeeList} from "../Employee/EmployeeList";
 export const Employees = (props) => {
     const [name, setName] = useState()
     const [surname, setSurname] = useState()
+    const [details, setDetails] = useState()
 
     const onNameChange = ( e ) => {
         setName(e.target.value);
@@ -13,8 +14,12 @@ export const Employees = (props) => {
         setSurname(e.target.value);
     }
 
+    const onDetailsChange = ( e ) => {
+        setDetails(e.target.value);
+    }
+
     const addEmployee = () => {
-        props.addEmployee(name, surname)
+        props.addEmployee(name, surname, details)
     }
 
     return(
@@ -27,6 +32,8 @@ export const Employees = (props) => {
                 <input onChange={ onNameChange } type="text"/>
                 <label>Surname</label>
                 <input onChange={onSurnameChange} type="text"/>
+                <label>Details</label>
+                <input onChange={onDetailsChange} type="textarea"/>
                 <input onClick={addEmployee} type="button" value="Add"/>
             </section>
         </div>
