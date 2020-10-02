@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, {useEffect, useState} from 'react';
 import './App.css';
 import { BrowserRouter, Switch, Route, Link } from 'react-router-dom';
 import Container from 'react-bootstrap/Container';
@@ -38,20 +38,35 @@ function App() {
   const [ employees, setEmployees ] = useState(employeeArray);
   const [ projects, setProjects ] = useState(projectsArr);
 
+  useEffect(() => {
+    //Load user's from storage
+    let storage = localStorage.getItem('employees')
+    if (storage != null){
+      setEmployees(JSON.parse(storage))
+    }
+  },[]);
+
+
   const addNewEmployee = (name, surname) => {
-    const newEmployee = {
+    const added = {
       id:GenerateId(),
       name:name,
       surname:surname,
       img:surname
     }
+    const newEmployees = [...employees, added]
+    //Saving employee's in local storage for educational purposes. These would usually be stored in a database or in memory.
+    localStorage.setItem('employees', JSON.stringify(newEmployees));
+
     //Combines previous employees with new employee
-    setEmployees([...employees, newEmployee]);
+    setEmployees(newEmployees);
   }
 
   const removeEmployee= (id) => {
     //Improvement: Use map instead of array for employee's.
     var newEmployees = employees.filter(e => e.id !== id)
+
+    localStorage.setItem('employees', JSON.stringify(newEmployees));
     setEmployees(newEmployees)
   }
 
