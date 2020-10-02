@@ -10,46 +10,49 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import {Projects} from "./Components/Views/Projects";
 
 //Variable which mocks a database's auto incremental
-let idGenerator = 0;
+let tmpId = 0;
 
-const GenerateId = () => {
-  return ++idGenerator;
-}
-
-
-//Default employees
-let employeeArray = [
-  { id:GenerateId(), name: "Michael", surname: "Samson", description: "A efficient worker who does everything he is asked!" },
-  { id:GenerateId(), name: "Jordan", surname: "Smith" , description: "Lazy boy. But has much experience."},
-  { id:GenerateId(), name: "Samuel", surname: "Schanwzky", description: "Knows mostly electricity work." },
-];
-
-//Default projects
-//Members - id ID of employees which is assigned to the project
-let projectsArr = [
-  { id:GenerateId(), name: "Building a house", members: [1,2] },
-  { id:GenerateId(), name: "Fixing electricity", members: [2,3] },
-];
 
 
 
 
 function App() {
-  const [ employees, setEmployees ] = useState(employeeArray);
-  const [ projects, setProjects ] = useState(projectsArr);
+  const [ employees, setEmployees ] = useState([]);
+  const [ projects, setProjects ] = useState([]);
+
+  const generateId = () => {
+    tmpId++
+    return tmpId
+  }
 
   useEffect(() => {
     //Load user's from storage
     let storage = localStorage.getItem('employees')
     if (storage != null){
-      setEmployees(JSON.parse(storage))
+      let employees = JSON.parse(storage)
+      //Re-generate ID's
+      employees.forEach(e => e.id = generateId())
+      setEmployees(employees)
     }
+    else{
+      //Generate default values
+      setEmployees([
+        { id:generateId(), name: "Michael", surname: "Samson", description: "A efficient worker who does everything he is asked!" },
+        { id:generateId(), name: "Jordan", surname: "Smith" , description: "Lazy boy. But has much experience."},
+        { id:generateId(), name: "Samuel", surname: "Schanwzky", description: "Knows mostly electricity work." },
+      ])
+    }
+    //Generate default values
+    setProjects([
+      { id:generateId(), name: "Building a house", members: [1,2] },
+      { id:generateId(), name: "Fixing electricity", members: [2,3] },
+    ])
   },[]);
 
 
   const addNewEmployee = (name, surname, description) => {
     const added = {
-      id:GenerateId(),
+      id:generateId(),
       name:name,
       surname:surname,
       description:description,
@@ -73,7 +76,7 @@ function App() {
 
   const addProject = (name) => {
     let newProject = {
-      id:GenerateId(),
+      id:generateId(),
       name:name,
       members:[]
     }
