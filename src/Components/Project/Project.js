@@ -2,6 +2,9 @@ import React from 'react';
 import { Card } from 'react-bootstrap';
 import Col from "react-bootstrap/Col";
 import {PEmployeeList} from "./PEmployeeList";
+import {Employee} from "../Employee/Employee";
+import PropTypes from 'prop-types';
+
 
 export const Project = (props) => {
     const handleClick = () => {
@@ -19,6 +22,11 @@ export const Project = (props) => {
                 <Card.Footer style={{color:"red", cursor: "pointer"}} onClick={handleClick}>Delete project</Card.Footer>
             </Card>
         </Col>
-
     )
 }
+
+Project.propTypes = {
+    id: PropTypes.number,
+    name: PropTypes.string,
+    members: PropTypes.array,
+};

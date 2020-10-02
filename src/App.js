@@ -42,7 +42,8 @@ function App() {
     const newEmployee = {
       id:GenerateId(),
       name:name,
-      surname:surname
+      surname:surname,
+      img:surname
     }
     //Combines previous employees with new employee
     setEmployees([...employees, newEmployee]);
