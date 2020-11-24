@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>Welcome to this hyper-hybrid gaming site!</h1>
+
+    <input id="get-btn" type="button" value="Hent data">
+    <input id="url-txt" type="text" style="width: 300px;">
+    <div id="output"></div>
+    <img src="https://localhost:5001/playstation.png">
+
+    <script>
+        const getBtn = document.querySelector("#get-btn");
+        const urlTxt = document.querySelector("#url-txt");
+        const output = document.querySelector("#output");
+
+        const getResult = () => {
+            let url = urlTxt.value
+            fetch(url)
+                .then((response) => response.json())
+                .then((result) => {
+                    output.innerHTML = JSON.stringify(result);
+                })
+                .catch((error) => {
+                    output.innerHTML = error;
+                })
+            alert("Clicked!");
+        }
+
+        getBtn.addEventListener("click", getResult);
+
+    </script>
+</body>
+</html>
