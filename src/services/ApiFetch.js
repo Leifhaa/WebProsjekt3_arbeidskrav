@@ -1,0 +1,1 @@
+//Todo: Good practise. This file should be responsible of doing ajax calls.

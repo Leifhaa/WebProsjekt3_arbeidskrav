@@ -2,7 +2,7 @@ import React from 'react';
 import { Card } from 'react-bootstrap';
 import Col from "react-bootstrap/Col";
 import {PEmployeeList} from "./PEmployeeList";
-import {Employee} from "../Employee/Employee";
+import {GameItem} from "../game/GameItem";
 import PropTypes from 'prop-types';
 
 

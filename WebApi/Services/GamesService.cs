@@ -25,10 +25,23 @@ namespace WebApi.Services{
             return _games.Find(game => true).ToList();
         }
 
+
+        //Todo: REname to 'GetById'
         public Game FindById(string id){
             return _games.Find(game => game.id == id ).SingleOrDefault();
         }
 
-        //Todo: Add remaining CRUD operations which is in part of PP presentation.
+        public Game Create(Game game){
+            _games.InsertOne(game);
+            return game;
+        }
+
+        public void Remove(string id){
+            _games.DeleteOne(game => game.id == id);
+        }
+
+        public void Update(string id,Game game){
+            _games.ReplaceOne(dbGame => dbGame.id == game.id, game);
+        }
     }
 }

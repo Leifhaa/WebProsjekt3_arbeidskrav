@@ -3,7 +3,7 @@ import React from 'react';
 export const Home = () => {
     return (
         <div>
-            <h3>Welcome to project editor V3! The new revolution of project administration</h3>
+            <h3>Welcome to Playstation's unofficial release of PS5</h3>
         </div>
     )
 }

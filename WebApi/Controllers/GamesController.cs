@@ -29,5 +29,34 @@ namespace WebApi.Controllers{
             return game;
         }
 
+        [HttpPut("{id:length(24)}")]
+        public IActionResult Put(string id,Game gameIn){
+            var dbGame = _gamesService.FindById(gameIn.id);
+            if (dbGame == null){
+                return NotFound();
+            }
+
+            _gamesService.Update(id, gameIn);
+            return NoContent();
+        }
+
+        [HttpPost]
+        public ActionResult<Game> Post(Game game){
+            _gamesService.Create(game);
+            return game;
+        }
+
+        [HttpDelete("{id:length(24)}")]
+        public IActionResult Delete(string id){
+            var game = _gamesService.FindById(id);
+
+            if (game == null){
+                return NotFound();
+            }
+
+            _gamesService.Remove(game.id);
+            return NoContent();
+        }
+
     }
 }

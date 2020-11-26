@@ -1,6 +1,6 @@
 import React, {useState} from 'react';
-import {EmployeeList} from "../Employee/EmployeeList";
-import {ProjectList} from "../Project/ProjectList";
+import {GameList} from "../components/game/GameList";
+import {ProjectList} from "../components/project/ProjectList";
 
 export const Projects = (props) => {
     const [name, setName] = useState()
