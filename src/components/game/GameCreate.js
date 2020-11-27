@@ -5,6 +5,7 @@ export const GameCreate = () => {
     const [name, setName] = useState("");
     const [price, setPrice] = useState(0);
     const [image, setImage] = useState("");
+    const [imgFile, setImgFile] = useState({});
 
     const handleChange = (e) => {
         switch (e.target.id){
@@ -20,6 +21,25 @@ export const GameCreate = () => {
             default:
         }
     }
+
+    const handleImgChange = (e) => {
+        setImgFile(e.target.files[0])
+    }
+
+    const uploadImg = () => {
+        let data = new FormData();
+        data.append("file", imgFile)
+
+        axios({
+            method: "POST",
+            url: "https://localhost:5001/imageupload/uploadimage",
+            data: data,
+            config: {headers: {"Content-Type": "multipart/form-data"}}
+            }
+        )
+
+    }
+
     const createGame = () => {
         const url = "https://localhost:5001/games";
         const newGame = {name: name, price: price, image: image};
@@ -37,6 +57,9 @@ export const GameCreate = () => {
             <label>Image</label>
             <input id="image" onChange={handleChange}  type="text" value={image}/>
             <input onClick={createGame} type="button" value="Save new game"/>
+            <br/>
+            <input onChange={handleImgChange} type="file"/>
+            <input onClick={uploadImg} type="button" value="Upload Image"/>
         </selection>
     )
 }
