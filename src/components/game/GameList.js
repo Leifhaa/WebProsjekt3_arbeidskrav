@@ -3,7 +3,7 @@ import {GameItem} from './GameItem';
 import Row from "react-bootstrap/Row";
 import {GameContext} from "../../context/GameContext";
 
-export const GameList = (props) => {
+export const GameList = () => {
     const {games} = useContext( GameContext)
     //Retrieve games from the context
     const [gamesState] = games

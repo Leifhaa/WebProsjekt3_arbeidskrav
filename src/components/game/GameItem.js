@@ -6,9 +6,18 @@ import Button from "react-bootstrap/Button";
 import Modal from "react-bootstrap/Modal";
 import axios from 'axios';
 import {GameContext} from "../../context/GameContext";
+import styled, { css } from 'styled-components'
+import {GameRating} from "./GameRating";
+
+const StyledGame = styled(Col)`
+    .game-title{
+      padding-top:10px;
+      font-size:20px;
+    }
+`
 
 
-export const GameItem = ({id, name, price, image}) => {
+export const GameItem = ({id, name, price, image, rating}) => {
     const [show, setShow] = useState(false);
 
     const {game} = useContext(GameContext)
@@ -26,13 +35,25 @@ export const GameItem = ({id, name, price, image}) => {
         axios.delete(`${url}/${id}`);
     }
 
+    const loadImageSrc = () => {
+        if (image === null){
+            //use default img
+            return require("../../assets/no-preview-available.png")
+        }
+        return `/images/${image}`
+    }
+
     function descModal() {
         return (
             <Modal show={show} onHide={hideModal}>
                 <Modal.Header closeButton>
                     <Modal.Title>Name: {name}</Modal.Title>
                 </Modal.Header>
-                <Modal.Body>Price: {price}</Modal.Body>
+                <Modal.Body>
+                    Price: Foooo {price}
+                    <br/>
+                    <GameRating/>
+                </Modal.Body>
                 <Modal.Footer>
                     <Button variant="secondary">
                         Close
@@ -42,34 +63,29 @@ export const GameItem = ({id, name, price, image}) => {
         )
     }
 
-    return (
-        <Col xs={12} sm={6} md={4} lg={3} xl={2}>
 
+    return (
+        <StyledGame xs={12} sm={6} md={4} lg={3} xl={2}>
             <article>
                 {descModal()}
                 <Card>
-                    <Card.Header>{name}</Card.Header>
-                    <Card.Img src={require("../../assets/anonymous.png")}/>
+                    <Card.Img variant="top" src={loadImageSrc()}/>
                     <Card.Body>
-                        <Card.Text>{name} {price}</Card.Text>
+                        <GameRating/>
+                        <Card.Text className={"game-title"}>{name}</Card.Text>
                     </Card.Body>
                     <Button onClick={setSelectedGame}>Update ship</Button>
-                    <Card.Img variant="top" src={`/images/${image}`}/>
                     <Card.Link style={{cursor: "pointer"}} onClick={() => setShow(true)}>View more</Card.Link>
                     <Card.Footer style={{color: "red", cursor: "pointer"}} onClick={handleDelete}>Delete</Card.Footer>
                 </Card>
             </article>
-        </Col>
+        </StyledGame>
     )
 }
 
 GameItem.propTypes = {
-    id: PropTypes.number.isRequired,
+    id: PropTypes.string.isRequired,
     name: PropTypes.string.isRequired,
     price: PropTypes.number.isRequired,
-    image: PropTypes.string.isRequired,
 };
 
-GameItem.defaultProps = {
-    price: "599.99"
-};

@@ -1,8 +1,6 @@
 import React, {useEffect, useState} from 'react';
 import {GameList} from "../components/game/GameList";
-import {GameCreate} from "../components/game/GameCreate";
 import {GameProvider} from "../context/GameContext";
-import {GameUpdate} from "../components/game/GameUpdate";
 
 export const Games = (props) => {
     //Todo: Create context of monsters
