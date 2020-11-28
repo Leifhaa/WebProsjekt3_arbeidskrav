@@ -1,8 +1,9 @@
 import {BrowserRouter, Route, Switch} from "react-router-dom";
 import {Home} from "../views/Home";
-import {Games} from "../views/Games";
+import {GameCatalog} from "../views/games/catalog/GameCatalog";
 import React from "react";
 import {MainNavivation} from "../components/navigation/MainNavigation";
+import {GameProduct} from "../views/games/product/GameProduct";
 
 export const Routes = () => {
 
@@ -11,9 +12,13 @@ export const Routes = () => {
             <MainNavivation/>
             <Switch>
                 <Route exact path="/" component={Home}/>
-                <Route path="/games">
-                    <Games/>
+                <Route path="/games/:id" component={GameProduct}>
+                    <GameProduct/>
                 </Route>
+                <Route path="/games">
+                    <GameCatalog/>
+                </Route>
+
             </Switch>
         </BrowserRouter>
     )

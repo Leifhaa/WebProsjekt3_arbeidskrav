@@ -1,4 +1,4 @@
-import {GameContext} from "../../context/GameContext";
+import {GameContext} from "../../../context/GameContext";
 import React, {useContext, useEffect} from 'react';
 import axios from 'axios'
 

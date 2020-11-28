@@ -10,6 +10,8 @@ export const GameProvider = (props) => {
     const [game, setGame] = useState()
     //All the item's
     const [games, setGames] = useState([])
+    //If we're loading from API.
+    const [loading, setLoading] = useState(true)
 
 
     useEffect(() => {
@@ -18,12 +20,13 @@ export const GameProvider = (props) => {
         axios.get(url)
             .then(response => {
                 setGames(response.data);
+                setLoading(false)
             })
     }, [])
 
     //returns components which should have access to this context
     return (
-        <GameContext.Provider value={{games: [games, setGames], game: [game, setGame]}}>
+        <GameContext.Provider value={{games: [games, setGames], game: [game, setGame], loading: [loading]}}>
             {props.children}
         </GameContext.Provider>
     )

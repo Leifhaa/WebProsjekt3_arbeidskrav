@@ -1,5 +1,5 @@
 import React, {useState} from 'react';
-import {GameList} from "../components/game/GameList";
+import {GameList} from "../components/game/catalog/GameList";
 import {ProjectList} from "../components/project/ProjectList";
 
 export const Projects = (props) => {

@@ -1,11 +1,10 @@
-import React, {useState, useContext} from 'react';
+import React, {useState, useContext, useCallback} from 'react';
 import {Card, CardImg} from 'react-bootstrap';
 import Col from "react-bootstrap/Col";
 import PropTypes from 'prop-types';
-import Button from "react-bootstrap/Button";
-import Modal from "react-bootstrap/Modal";
+import {useHistory} from 'react-router-dom';
 import axios from 'axios';
-import {GameContext} from "../../context/GameContext";
+import {GameContext} from "../../../context/GameContext";
 import styled, { css } from 'styled-components'
 import {GameRating} from "./GameRating";
 
@@ -26,12 +25,17 @@ const StyledCol = styled(Col)`
   .game-item-card{
     height: 100%;
   }
+  
+  .game-item-img{
+    width: 100%;
+    height: 330px;
+  }
  
 `
 
 
 export const GameItem = ({id, name, price, image, rating, quantity}) => {
-    const [show, setShow] = useState(false);
+    const history = useHistory();
 
     const {game} = useContext(GameContext)
     const [gameState, setGame] = game
@@ -41,8 +45,6 @@ export const GameItem = ({id, name, price, image, rating, quantity}) => {
         setGame({id: id, name: name, price: price, image: image})
     }
 
-    const hideModal = () => setShow(false)
-
     const handleDelete = () => {
         const url = `/games`
         axios.delete(`${url}/${id}`);
@@ -51,42 +53,22 @@ export const GameItem = ({id, name, price, image, rating, quantity}) => {
     const loadImageSrc = () => {
         if (image === null){
             //use default img
-            return require("../../assets/no-preview-available.png")
+            return require("../../../assets/no-preview-available.png")
         }
         return `/images/${image}`
     }
 
-    function descModal() {
-        return (
-            <Modal show={show} onHide={hideModal}>
-                <Modal.Header closeButton>
-                    <Modal.Title>Name: {name}</Modal.Title>
-                </Modal.Header>
-                <Modal.Body>
-                    Price: Foooo {price}
-                    <br/>
-                    <GameRating/>
-                </Modal.Body>
-                <Modal.Footer>
-                    <Button variant="secondary">
-                        Close
-                    </Button>
-                </Modal.Footer>
-            </Modal>
-        )
-    }
-
+    const handleOnClick = useCallback(() => history.push(`/games/${id}`), [history]);
 
     return (
         <StyledCol xs={12} sm={6} md={4} lg={3} xl={2}>
-                {descModal()}
-                <Card onClick={() => setShow(true)} className={"game-item-card"} >
-                    <Card.Img variant="top" src={loadImageSrc()}/>
+                <Card onClick={handleOnClick} className={"game-item-card"} >
+                    <Card.Img className={"game-item-img"} variant="top" src={loadImageSrc()}/>
                     <Card.Body>
                         <GameRating rating={rating}/>
                         <Card.Text className={"game-title"}>{name}</Card.Text>
-                        <Card.Text className={"game-price"}>{price}</Card.Text>
                     </Card.Body>
+                    <Card.Text className={"game-price"}>{price}</Card.Text>
                     <Card.Footer>Numbers in stock: {quantity} </Card.Footer>
                 </Card>
         </StyledCol>
