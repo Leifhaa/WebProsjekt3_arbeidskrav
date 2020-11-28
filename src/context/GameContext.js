@@ -7,16 +7,13 @@ export const GameContext = createContext();
 
 export const GameProvider = (props) => {
     //The 'selected' item
-    const [game, setGame] = useState({id: "999", name: "MyFooBar", price: 12.23, image: "playstation.png"})
+    const [game, setGame] = useState()
     //All the item's
-    const [games, setGames] = useState([
-        {id: "999", name: "MyFooBar", price: 12.23, image: "playstation.png"},
-        {id: "1000", name: "MyBarFoo", price: 12.23, image: "playstation.png"},
-    ])
+    const [games, setGames] = useState([])
 
 
     useEffect(() => {
-        const url = "https://localhost:5001/games";
+        const url = "/games";
         //Todo: Add AWait og promises og async.
         axios.get(url)
             .then(response => {

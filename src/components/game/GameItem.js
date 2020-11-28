@@ -22,7 +22,7 @@ export const GameItem = ({id, name, price, image}) => {
     const hideModal = () => setShow(false)
 
     const handleDelete = () => {
-        const url = `https://localhost:5001/games`
+        const url = `/games`
         axios.delete(`${url}/${id}`);
     }
 
@@ -54,7 +54,7 @@ export const GameItem = ({id, name, price, image}) => {
                         <Card.Text>{name} {price}</Card.Text>
                     </Card.Body>
                     <Button onClick={setSelectedGame}>Update ship</Button>
-                    <Card.Img variant="top" src={`https://localhost:5001/images/${image}`}/>
+                    <Card.Img variant="top" src={`/images/${image}`}/>
                     <Card.Link style={{cursor: "pointer"}} onClick={() => setShow(true)}>View more</Card.Link>
                     <Card.Footer style={{color: "red", cursor: "pointer"}} onClick={handleDelete}>Delete</Card.Footer>
                 </Card>

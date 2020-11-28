@@ -11,7 +11,7 @@ export const Routes = () => {
             <MainNavivation/>
             <Switch>
                 <Route exact path="/" component={Home}/>
-                <Route path="/employees">
+                <Route path="/games">
                     <Games/>
                 </Route>
             </Switch>

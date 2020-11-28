@@ -32,7 +32,7 @@ export const GameCreate = () => {
 
         axios({
             method: "POST",
-            url: "https://localhost:5001/imageupload/uploadimage",
+            url: "/imageupload/uploadimage",
             data: data,
             config: {headers: {"Content-Type": "multipart/form-data"}}
             }
@@ -41,7 +41,7 @@ export const GameCreate = () => {
     }
 
     const createGame = () => {
-        const url = "https://localhost:5001/games";
+        const url = "/games";
         const newGame = {name: name, price: price, image: image};
 
         axios.post(url, newGame)

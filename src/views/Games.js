@@ -14,8 +14,6 @@ export const Games = (props) => {
             <h3>Current games:</h3>
             <GameProvider>
                 <GameList/>
-                <GameCreate/>
-                <GameUpdate/>
             </GameProvider>
         </section>
     )

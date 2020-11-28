@@ -1,4 +1,5 @@
 {
+  "proxy": "https://localhost:44314/",
   "name": "arbeidskrav",
   "version": "0.1.0",
   "private": true,
