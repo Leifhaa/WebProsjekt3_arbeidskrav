@@ -9,6 +9,8 @@ import styled, { css } from 'styled-components'
 import {GameRating} from "./GameRating";
 
 const StyledCol = styled(Col)`
+  text-align: center;
+
    .game-title{
      padding:10px;
      font-size:20px;

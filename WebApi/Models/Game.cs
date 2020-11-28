@@ -11,6 +11,10 @@ namespace WebApi.Models{
         /// </summary>
         public string Name { get; set; }
         /// <summary>
+        /// Desctiption about the game
+        /// </summary>
+        public string Description { get; set; }
+        /// <summary>
         /// Price of the game
         /// </summary>
         public double Price { get; set; }
@@ -19,8 +23,14 @@ namespace WebApi.Models{
         /// </summary>
         public string Image { get; set; }
         /// <summary>
+        /// Category of the game.
+        /// </summary>
+        public string Category { get; set; }
+
+        /// <summary>
         /// Ratings of the game by customers
         /// </summary>
+        /// 
         public double Rating { get; set; }
         /// <summary>
         /// Number of games in stock in store
