@@ -6,10 +6,29 @@ namespace WebApi.Models{
         [BsonId]
         [BsonRepresentation(BsonType.ObjectId)]
         public string id { get; set; }
+        /// <summary>
+        /// Name of the game
+        /// </summary>
         public string Name { get; set; }
+        /// <summary>
+        /// Price of the game
+        /// </summary>
         public double Price { get; set; }
+        /// <summary>
+        /// Image name of the game
+        /// </summary>
         public string Image { get; set; }
+        /// <summary>
+        /// Ratings of the game by customers
+        /// </summary>
         public double Rating { get; set; }
+        /// <summary>
+        /// Number of games in stock in store
+        /// </summary>
+        public int Quantity { get; set; }
+        /// <summary>
+        /// Customer comments on the game.
+        /// </summary>
         public IEnumerable<string> Comments { get; set; }
 
     }

@@ -2,6 +2,16 @@ import React, {useEffect, useState, useContext} from 'react';
 import {GameItem} from './GameItem';
 import Row from "react-bootstrap/Row";
 import {GameContext} from "../../context/GameContext";
+import styled from "styled-components";
+import Col from "react-bootstrap/Col";
+
+
+const StyledRow = styled(Row)`
+  display:flex;
+  flex-wrap: wrap;
+`
+
+
 
 export const GameList = () => {
     const {games} = useContext( GameContext)
@@ -20,10 +30,10 @@ export const GameList = () => {
 
     return (
         <section>
-            <Row>
+            <StyledRow>
                 {renderGames()}
                 <span>Number of records:{games.length}</span>
-            </Row>
+            </StyledRow>
         </section>
     )
 }

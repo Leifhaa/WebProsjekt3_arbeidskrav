@@ -9,15 +9,28 @@ import {GameContext} from "../../context/GameContext";
 import styled, { css } from 'styled-components'
 import {GameRating} from "./GameRating";
 
-const StyledGame = styled(Col)`
-    .game-title{
-      padding-top:10px;
-      font-size:20px;
-    }
+const StyledCol = styled(Col)`
+   .game-title{
+     padding:10px;
+     font-size:20px;
+   }
+    
+   .game-price{
+     font-size:30px;
+   }
+    
+  .game-item-card:hover {
+    transform: scale(1.02); /* (150% zoom - Note: if the zoom is too large, it will go outside of the viewport) */
+    cursor: pointer;
+  }
+  .game-item-card{
+    height: 100%;
+  }
+ 
 `
 
 
-export const GameItem = ({id, name, price, image, rating}) => {
+export const GameItem = ({id, name, price, image, rating, quantity}) => {
     const [show, setShow] = useState(false);
 
     const {game} = useContext(GameContext)
@@ -65,21 +78,18 @@ export const GameItem = ({id, name, price, image, rating}) => {
 
 
     return (
-        <StyledGame xs={12} sm={6} md={4} lg={3} xl={2}>
-            <article>
+        <StyledCol xs={12} sm={6} md={4} lg={3} xl={2}>
                 {descModal()}
-                <Card>
+                <Card onClick={() => setShow(true)} className={"game-item-card"} >
                     <Card.Img variant="top" src={loadImageSrc()}/>
                     <Card.Body>
-                        <GameRating/>
+                        <GameRating rating={rating}/>
                         <Card.Text className={"game-title"}>{name}</Card.Text>
+                        <Card.Text className={"game-price"}>{price}</Card.Text>
                     </Card.Body>
-                    <Button onClick={setSelectedGame}>Update ship</Button>
-                    <Card.Link style={{cursor: "pointer"}} onClick={() => setShow(true)}>View more</Card.Link>
-                    <Card.Footer style={{color: "red", cursor: "pointer"}} onClick={handleDelete}>Delete</Card.Footer>
+                    <Card.Footer>Numbers in stock: {quantity} </Card.Footer>
                 </Card>
-            </article>
-        </StyledGame>
+        </StyledCol>
     )
 }
 
