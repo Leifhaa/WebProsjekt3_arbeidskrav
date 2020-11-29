@@ -25,8 +25,7 @@ namespace WebApi.Services{
             return _games.Find(game => true).ToList();
         }
 
-        //Todo: REname to 'GetById'
-        public Game FindById(string id){
+        public Game GetById(string id){
             return _games.Find(game => game.id == id ).SingleOrDefault();
         }
 

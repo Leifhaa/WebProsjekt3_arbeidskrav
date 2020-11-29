@@ -36,7 +36,7 @@ const StyledCol = styled(Col)`
 `
 
 
-export const GameItem = ({id, name, price, image, rating: ratingAvg, quantity}) => {
+export const GameItem = ({id, name, price, image, ratingAvg, quantity}) => {
     const history = useHistory();
 
     const {game} = useContext(GameContext)
@@ -67,7 +67,7 @@ export const GameItem = ({id, name, price, image, rating: ratingAvg, quantity}) 
                 <Card onClick={handleOnClick} className={"game-item-card"} >
                     <Card.Img className={"game-item-img"} variant="top" src={loadImageSrc()}/>
                     <Card.Body>
-                        <GameRating rating={ratingAvg}/>
+                        <GameRating ratingAvg={ratingAvg}/>
                         <Card.Text className={"game-title"}>{name}</Card.Text>
                     </Card.Body>
                     <Card.Text className={"game-price"}>{price}</Card.Text>

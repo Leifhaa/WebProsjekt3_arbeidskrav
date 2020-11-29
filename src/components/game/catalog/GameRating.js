@@ -10,8 +10,8 @@ const StyledStars = styled.div`
         color:grey;
     }
 `
-export const GameRating = ({rating}) => {
-    const roundedRating = Math.round(rating);
+export const GameRating = ({ratingAvg}) => {
+    const roundedRating = Math.round(ratingAvg);
     return(
         <StyledStars>
             {[...Array(5)].map((x, i) =>

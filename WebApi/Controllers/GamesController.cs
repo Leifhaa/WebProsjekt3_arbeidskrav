@@ -34,13 +34,15 @@ namespace WebApi.Controllers{
         [HttpGet]
         [Route("{id}")]
         public ActionResult<Game> GetGame(string id){
-            var game = _gamesService.FindById(id);
+            var game = _gamesService.GetById(id);
             return game;
         }
 
+
+
         [HttpPut("{id:length(24)}")]
         public IActionResult Put(string id,Game gameIn){
-            var dbGame = _gamesService.FindById(gameIn.id);
+            var dbGame = _gamesService.GetById(gameIn.id);
             if (dbGame == null){
                 return NotFound();
             }
@@ -63,7 +65,7 @@ namespace WebApi.Controllers{
             //A better alternative would be to use pessimistic or optimistic lock on db.
             lock (RatingLock)
             {
-                var dbGame = _gamesService.FindById(id);
+                var dbGame = _gamesService.GetById(id);
                 if (dbGame == null)
                 {
                     return NotFound();
@@ -80,7 +82,7 @@ namespace WebApi.Controllers{
 
         [HttpDelete("{id:length(24)}")]
         public IActionResult Delete(string id){
-            var game = _gamesService.FindById(id);
+            var game = _gamesService.GetById(id);
 
             if (game == null){
                 return NotFound();
