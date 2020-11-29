@@ -5,7 +5,7 @@ import {Col, Row} from "react-bootstrap";
 import {GameRater} from "./GameRater";
 import Button from "react-bootstrap/Button";
 import {GameCommentsList} from "./comment/CommentList";
-import {fetchGame} from "../../../services/GameApi";
+import {fetchGame, purchaseGame} from "../../../services/GameApi";
 import {GameCatalogContext} from "../../../context/GameCatalogContext";
 import {GameProductContext} from "../../../context/GameProductContext";
 
@@ -23,17 +23,23 @@ const Styled = styled.div`
     }
 `
 
-export const GameArticle = ({id}) => {
+export const GameArticle = () => {
     const {game, loading} = useContext(GameProductContext)
     //Retrieve games from the context
-    const [gameState] = game
+    const [gameState, setGame] = game
     const [loadingState] = loading
 
 
 
+    const purchase = () => {
+        if (purchaseGame(gameState.id)){
+            setGame({...gameState, quantity: gameState.quantity - 1})
+        }
+    }
+
 
     const loadImageSrc = () => {
-        if (game.image === null) {
+        if (gameState.image === null) {
             //use default img
             return require("../../../assets/no-preview-available.png")
         }
@@ -48,17 +54,17 @@ export const GameArticle = ({id}) => {
                     <img src={loadImageSrc()} alt={"Cover of the game"} className={"game-cover"}/>
                 </Col>
                 <Col xs={12} md={6}>
-                    <h1>{game.name}</h1>
+                    <h1>{gameState.name}</h1>
                     <h3>Give a rating</h3>
-                    <GameRater id={id} ratingCounter={game.ratingCounter}/>
+                    <GameRater id={gameState.id} ratingCounter={gameState.ratingCounter}/>
                     <h3>Purchase</h3>
-                    <Button variant={"success"}>Purchase!</Button>
+                    <Button variant={"success"} onClick={purchase} disabled={gameState.quantity < 1}>Purchase!</Button>
                     <p className={"game-quantity"}>{gameState.quantity} left in stock</p>
                     <h3>Category</h3>
-                    <p>{game.category}</p>
+                    <p>{gameState.category}</p>
                     <br/>
                     <h3>Description:</h3>
-                    <p>{game.description}</p>
+                    <p>{gameState.description}</p>
                     <br/>
                     <h3>Comments from customers</h3>
                     <GameCommentsList/>

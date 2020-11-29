@@ -23,3 +23,16 @@ export const postRating = async (id, rating, setRating, setHasRated) => {
 }
 
 
+export const purchaseGame = async (id) => {
+    const url = `/api/games/${id}/purchase`;
+    try {
+        const response = await axios.post(url)
+        if (response.status === 200){
+            return true;
+        }
+    } catch (error) {
+        console.log("error", error)
+    }
+    return false;
+}
+
