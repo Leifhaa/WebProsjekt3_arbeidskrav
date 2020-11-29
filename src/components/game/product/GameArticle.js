@@ -10,7 +10,6 @@ import {GameCatalogContext} from "../../../context/GameCatalogContext";
 import {GameProductContext} from "../../../context/GameProductContext";
 
 const Styled = styled.div`
-
     .game-cover{
       height:400px;
       display: block;
@@ -65,6 +64,9 @@ export const GameArticle = () => {
                     <br/>
                     <h3>Description:</h3>
                     <p>{gameState.description}</p>
+                    <br/>
+                    <h3>Game characters:</h3>
+                    <GameCharacterList/>
                     <br/>
                     <h3>Comments from customers</h3>
                     <GameCommentsList/>

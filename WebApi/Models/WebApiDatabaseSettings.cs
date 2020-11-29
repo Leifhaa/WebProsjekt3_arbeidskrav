@@ -7,6 +7,10 @@ namespace WebApi.Models{
         /// Name of the comments collection
         /// </summary>
         public string CommentsCollectionName { get; set; }
+        /// <summary>
+        /// Name of the characters collection
+        /// </summary>
+        public string CharactersCollectionName { get; set; }
 
         //Connection string (URL) to the mongoDb
         string ConnectionString {get;set;}
@@ -17,6 +21,7 @@ namespace WebApi.Models{
     public class WebApiDatabaseSettings : IWebApiDatabaseSettings {
         public string GamesCollectionName { get; set;}
         public string CommentsCollectionName { get; set; }
+        public string CharactersCollectionName { get; set; }
         public string ConnectionString{ get; set;}
         public string DatabaseName{ get; set;}
     }
