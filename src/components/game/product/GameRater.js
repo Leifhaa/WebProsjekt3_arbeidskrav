@@ -42,7 +42,7 @@ export const GameRater = () => {
             {[...Array(5)].map((x, i) => {
                     const ratingVal = i + 1
                     return (
-                        <label>
+                        <label key={i}>
                             <input
                                 type="radio"
                                 name="rating"

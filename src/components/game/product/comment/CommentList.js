@@ -28,7 +28,7 @@ export const GameCommentsList = () => {
             <React.Fragment>
                 {comments.map((comment, idx) => {
                         return (
-                            <CommentItem {...comment}/>
+                            <CommentItem key={idx} {...comment}/>
                         )
                     }
                 )}
