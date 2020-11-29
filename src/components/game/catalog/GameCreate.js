@@ -41,7 +41,7 @@ export const GameCreate = () => {
     }
 
     const createGame = () => {
-        const url = "/games";
+        const url = "/api/games";
         const newGame = {name: name, price: price, image: image};
 
         axios.post(url, newGame)

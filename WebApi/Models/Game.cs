@@ -31,7 +31,17 @@ namespace WebApi.Models{
         /// Ratings of the game by customers
         /// </summary>
         /// 
-        public double Rating { get; set; }
+        public double RatingAvg { get; set; }
+        /// <summary>
+        /// Number of customers which has given a rating
+        /// </summary>
+        /// 
+        public int RatingCounter { get; set; }
+        /// <summary>
+        /// Sum of all ratings which has been given
+        /// </summary>
+        /// 
+        public int RatingSum { get; set; }
         /// <summary>
         /// Number of games in stock in store
         /// </summary>

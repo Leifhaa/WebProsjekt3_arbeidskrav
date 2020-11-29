@@ -7,7 +7,7 @@ export const GameUpdate = () => {
     const [gameState, setGame] = game
 
     const updateGame = () => {
-        const url = "/games";
+        const url = "/api/games";
         //Todo: Add AWait og promises og async.
         axios.put(`${url}/${gameState.id}`, gameState)
     }

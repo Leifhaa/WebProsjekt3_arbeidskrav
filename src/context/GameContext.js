@@ -15,7 +15,7 @@ export const GameProvider = (props) => {
 
 
     useEffect(() => {
-        const url = "/games";
+        const url = "/api/games";
         //Todo: Add AWait og promises og async.
         axios.get(url)
             .then(response => {

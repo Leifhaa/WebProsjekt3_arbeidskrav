@@ -1,12 +1,21 @@
 using System.Collections.Generic;
 using Microsoft.AspNetCore.Mvc;
+using WebApi.Dto;
 using WebApi.Models;
 using WebApi.Services;
 
 namespace WebApi.Controllers{
+
+
     [ApiController]
-    [Route("[controller]")]
+    [Route("/api/[controller]")]
     public class GamesController : ControllerBase {
+
+        /// <summary>
+        /// A object to ensure atomic operations in rating.
+        /// </summary>
+        public static object RatingLock { get; set; } = new object(); 
+
 
         private readonly GamesService _gamesService;
 
@@ -44,6 +53,29 @@ namespace WebApi.Controllers{
         public ActionResult<Game> Post(Game game){
             _gamesService.Create(game);
             return game;
+        }
+
+        [HttpPost]
+        [Route("{id:length(24)}/rating")]
+        public IActionResult Post(string id, GameRatingDto dto)
+        {
+            //Note: Lock should never be held for this long. As the rating should be atomic, I'm using lock it for simplicity.
+            //A better alternative would be to use pessimistic or optimistic lock on db.
+            lock (RatingLock)
+            {
+                var dbGame = _gamesService.FindById(id);
+                if (dbGame == null)
+                {
+                    return NotFound();
+                }
+
+                dbGame.RatingSum += dto.Rating;
+                dbGame.RatingCounter++;
+                dbGame.RatingAvg = (double)dbGame.RatingSum / dbGame.RatingCounter;
+                _gamesService.Update(dbGame.id,dbGame);
+            }
+
+            return Ok();
         }
 
         [HttpDelete("{id:length(24)}")]
