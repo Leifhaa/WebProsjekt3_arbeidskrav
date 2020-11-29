@@ -3,11 +3,9 @@
 import React, {useState, createContext, useEffect} from 'react';
 import axios from 'axios';
 
-export const GameContext = createContext();
+export const GameCatalogContext = createContext();
 
-export const GameProvider = (props) => {
-    //The 'selected' item
-    const [game, setGame] = useState()
+export const GameCatalogProvider = (props) => {
     //All the item's
     const [games, setGames] = useState([])
     //If we're loading from API.
@@ -26,8 +24,8 @@ export const GameProvider = (props) => {
 
     //returns components which should have access to this context
     return (
-        <GameContext.Provider value={{games: [games, setGames], game: [game, setGame], loading: [loading]}}>
+        <GameCatalogContext.Provider value={{games: [games, setGames], loading: [loading]}}>
             {props.children}
-        </GameContext.Provider>
+        </GameCatalogContext.Provider>
     )
 }

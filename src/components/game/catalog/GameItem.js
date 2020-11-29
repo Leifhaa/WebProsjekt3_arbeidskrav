@@ -4,9 +4,9 @@ import Col from "react-bootstrap/Col";
 import PropTypes from 'prop-types';
 import {useHistory} from 'react-router-dom';
 import axios from 'axios';
-import {GameContext} from "../../../context/GameContext";
 import styled, { css } from 'styled-components'
 import {GameRating} from "./GameRating";
+import {GameCatalogContext} from "../../../context/GameCatalogContext";
 
 const StyledCol = styled(Col)`
   text-align: center;
@@ -39,13 +39,9 @@ const StyledCol = styled(Col)`
 export const GameItem = ({id, name, price, image, ratingAvg, quantity}) => {
     const history = useHistory();
 
-    const {game} = useContext(GameContext)
-    const [gameState, setGame] = game
+    const {game} = useContext(GameCatalogContext)
 
-    const setSelectedGame = () => {
-        //Create a new clone obj.
-        setGame({id: id, name: name, price: price, image: image})
-    }
+
 
     const handleDelete = () => {
         const url = `/api/games`

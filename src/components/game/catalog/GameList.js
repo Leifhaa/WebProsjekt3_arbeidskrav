@@ -1,10 +1,10 @@
 import React, {useEffect, useState, useContext} from 'react';
 import {GameItem} from './GameItem';
 import Row from "react-bootstrap/Row";
-import {GameContext} from "../../../context/GameContext";
 import styled from "styled-components";
 import Col from "react-bootstrap/Col";
 import Spinner from "react-bootstrap/Spinner";
+import {GameCatalogContext} from "../../../context/GameCatalogContext";
 
 
 const StyledRow = styled(Row)`
@@ -14,7 +14,7 @@ const StyledRow = styled(Row)`
 
 
 export const GameList = () => {
-    const {games, loading} = useContext(GameContext)
+    const {games, loading} = useContext(GameCatalogContext)
     //Retrieve games from the context
     const [gamesState] = games
     const [loadingState] = loading

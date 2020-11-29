@@ -25,5 +25,13 @@ namespace WebApi.Controllers
             return game;
         }
 
+        [HttpPost]
+        [Route("game/{id:length(24)}")]
+        public IActionResult Post(string id, Comment comment)
+        {
+            _commentsService.Create(comment);
+            return Ok();
+        }
+
     }
 }

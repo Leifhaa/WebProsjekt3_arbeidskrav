@@ -1,9 +1,9 @@
-import {GameContext} from "../../../context/GameContext";
 import React, {useContext, useEffect} from 'react';
 import axios from 'axios'
+import {GameCatalogContext} from "../../../context/GameCatalogContext";
 
 export const GameUpdate = () => {
-    const {game} = useContext(GameContext)
+    const {game} = useContext(GameCatalogContext)
     const [gameState, setGame] = game
 
     const updateGame = () => {
