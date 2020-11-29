@@ -37,7 +37,7 @@ export const GameArticle = ({id}) => {
             //use default img
             return require("../../../assets/no-preview-available.png")
         }
-        return `/images/${game.image}`
+        return `/images/${gameState.image}`
     }
 
 
@@ -61,7 +61,7 @@ export const GameArticle = ({id}) => {
                     <p>{game.description}</p>
                     <br/>
                     <h3>Comments from customers</h3>
-                    <GameCommentsList id={id}/>
+                    <GameCommentsList/>
                 </Col>
             </Row>
         </article>
@@ -69,7 +69,7 @@ export const GameArticle = ({id}) => {
 
     return (
         <Styled>
-            {loading ?
+            {loadingState ?
                 <h3>Loading...</h3>
                 : renderArticle()
             }

@@ -9,4 +9,17 @@ export const fetchGame = async (id, setGame, setLoading) => {
     setLoading(false)
 }
 
+export const postRating = async (id, rating, setRating, setHasRated) => {
+    const url = `/api/games/${id}/rating`;
+    try {
+        const response = await axios.post(url, {Rating: rating})
+        if (response.status === 200){
+            setRating(rating)
+            setHasRated(true)
+        }
+    } catch (error) {
+        console.log("error", error)
+    }
+}
+
 

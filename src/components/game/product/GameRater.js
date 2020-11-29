@@ -1,6 +1,8 @@
 import styled from "styled-components";
-import React, {useState} from "react";
+import React, {useContext, useState} from "react";
 import axios from "axios";
+import {GameProductContext} from "../../../context/GameProductContext";
+import {postRating} from "../../../services/GameApi";
 
 const StyledStars = styled.div`
     span{
@@ -21,22 +23,17 @@ const StyledStars = styled.div`
         color:grey;
     }
 `
-export const GameRater = ({id}) => {
+export const GameRater = () => {
+    //Retrieve the game
+    const {game} = useContext(GameProductContext)
+    const [gameState] = game;
+
     const [rating, setRating] = useState(null)
     const [hover, setHover] = useState(null)
-    const [hasRated, setRated] = useState(false)
+    const [hasRated, setHasRated] = useState(false)
 
     const uploadRating = async (rating) => {
-        const url = `/api/games/${id}/rating`;
-        try {
-            const response = await axios.post(url, {Rating: rating})
-            if (response.status === 200){
-                setRating(rating)
-                setRated(true)
-            }
-        } catch (error) {
-            console.log("error", error)
-        }
+        await postRating(gameState.id, rating, setRating, setHasRated)
     }
 
 

@@ -1,18 +1,21 @@
-import React, {useState} from "react";
+import React, {useContext, useState} from "react";
 import styled from "styled-components";
 import {Button} from "react-bootstrap";
 import {createComment} from "../../../../services/CommentApi";
+import {GameProductContext} from "../../../../context/GameProductContext";
 
 const StyledArticle = styled.article`
     input,label, button{display:block};
 `
 
 export const CommentCreate = ({addComment, id}) => {
+    const {game} = useContext(GameProductContext)
+    const [gameState] = game
     const [author, setAuthor] = useState();
     const [text, setText] = useState();
 
     const postComment = () => {
-        const comment = {author: author, text: text, game_id: id}
+        const comment = {author: author, text: text, game_id: gameState.game_id}
         const ok = createComment(comment)
         if (ok){
             //Successful, so add comment 'locally'.

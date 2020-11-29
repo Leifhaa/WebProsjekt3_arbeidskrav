@@ -20,7 +20,7 @@ export const GameProductProvider = (props) => {
 
     //returns components which should have access to this context
     return (
-        <GameProductContext.Provider value={{game: [game, setGame], loading: [loading], id:id}}>
+        <GameProductContext.Provider value={{game: [game, setGame], loading: [loading], id: [id]}}>
             {props.children}
         </GameProductContext.Provider>
     )
