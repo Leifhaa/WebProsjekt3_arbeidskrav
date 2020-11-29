@@ -40,7 +40,7 @@ namespace WebApi.Services
         /// <returns></returns>
         public List<Comment> GetAll(string id)
         {
-            var comments = _comments.Find(c => c.Game_id == id).ToList();
+            var comments = _comments.Find(c => c.GameId == id).ToList();
             return comments;
         }
     }

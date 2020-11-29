@@ -15,8 +15,8 @@ export const CommentCreate = ({addComment, id}) => {
     const [text, setText] = useState();
 
     const postComment = () => {
-        const comment = {author: author, text: text, game_id: gameState.game_id}
-        const ok = createComment(comment)
+        const comment = {author: author, text: text, gameId: gameState.id}
+        const ok = createComment(gameState.id,comment)
         if (ok){
             //Successful, so add comment 'locally'.
             //No need to fetch all comments whenver adding a new one if the HTTP request was successful

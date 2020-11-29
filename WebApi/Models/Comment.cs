@@ -24,6 +24,6 @@ namespace WebApi.Models
         /// <summary>
         /// The game which comment was written for.
         /// </summary>
-        public string Game_id { get; set; }
+        public string GameId { get; set; }
     }
 }
