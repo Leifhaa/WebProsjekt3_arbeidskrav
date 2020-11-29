@@ -38,7 +38,7 @@ namespace WebApi.Services
         /// </summary>
         /// <param name="id"></param>
         /// <returns></returns>
-        public List<Comment> GetAll(string id)
+        public List<Comment> getById(string id)
         {
             var comments = _comments.Find(c => c.GameId == id).ToList();
             return comments;

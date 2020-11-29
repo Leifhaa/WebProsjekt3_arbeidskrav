@@ -21,7 +21,7 @@ namespace WebApi.Controllers
         [Route("game/{id:length(24)}")]
         public ActionResult<List<Comment>> GetComments(string id)
         {
-            var game = _commentsService.GetAll(id);
+            var game = _commentsService.getById(id);
             return game;
         }
 

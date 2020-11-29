@@ -42,6 +42,7 @@ namespace WebApi
 
             services.AddSingleton<GamesService>();
             services.AddSingleton<CommentsService>();
+            services.AddSingleton<CharactersService>();
 
             //Which websites should be allowed to acccess our api
             services.AddCors(

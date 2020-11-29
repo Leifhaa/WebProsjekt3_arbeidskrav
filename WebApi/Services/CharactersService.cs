@@ -29,8 +29,8 @@ namespace WebApi.Services
         /// <returns></returns>
         public List<Character> getById(string id)
         {
-            var comments = _characters.Find(c => c.GameId == id).ToList();
-            return comments;
+            var characters = _characters.Find(c => c.GameId == id).ToList();
+            return characters;
         }
     }
 }

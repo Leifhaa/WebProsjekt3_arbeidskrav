@@ -15,7 +15,6 @@ namespace WebApi.Models
         /// Image of the character
         /// </summary>
         public string Image { get; set; }
-
         /// <summary>
         /// Name of the character
         /// </summary>
