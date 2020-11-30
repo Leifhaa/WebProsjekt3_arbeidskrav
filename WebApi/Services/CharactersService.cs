@@ -32,5 +32,12 @@ namespace WebApi.Services
             var characters = _characters.Find(c => c.GameId == id).ToList();
             return characters;
         }
+
+
+        public Character Create(Character character)
+        {
+            _characters.InsertOne(character);
+            return character;
+        }
     }
 }

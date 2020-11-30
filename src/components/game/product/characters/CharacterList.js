@@ -33,7 +33,7 @@ export const CharactersList = () => {
                 </tr>
                 {characters.map((character, index) => {
                     return (
-                        <CharacterItem key={index} name={character.name} image={character.image} race={character.race}/>
+                        <CharacterItem key={index} gameId={gameState.id} name={character.name} image={character.image} race={character.race}/>
                     )
                 })
                 }

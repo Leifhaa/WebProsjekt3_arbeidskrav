@@ -1,26 +1,33 @@
 import React, {useContext, useState} from "react";
 import {Modal} from "react-bootstrap";
 import Button from "react-bootstrap/Button";
-import {putGame} from "../../services/GameApi";
-import {GameCatalogContext} from "../../context/GameCatalogContext";
+import {putGame} from "../../../services/GameApi";
+import {GameCatalogContext} from "../../../context/GameCatalogContext";
+import {CharacterList} from "./CharacterList";
 
 export const AdminGameModal = ({show, handleClose, id, name, description, price, category, quantity, ratingAvg, ratingCounter, ratingSum, image}) => {
     const {games} = useContext(GameCatalogContext)
     const [gamesState, setGames] = games
+    const [characters, setCharacters] = useState([])
     const [newName, setNewName] = useState(name)
     const [newDescription, setNewDescription] = useState(description)
     const [newPrice, setNewPrice] = useState(price)
     const [newCategory, setNewCategory] = useState(category)
     const [newQuantity, setNewQuantity] = useState(quantity)
-    const [newImgName, setNewImgName] = useState(image)
     const [imgFile, setImgFile] = useState(null)
 
+    const editMode = () => {
+        //We're editing if id exists. Otherwise we're creating new game
+        return (id !== null)
+    }
+
     const onSave = () => {
+        //Create game object
         let newGame = {
             name: newName,
             description: newDescription,
             price: parseFloat(newPrice),
-            image: newImgName,
+            image: null,
             category: newCategory,
             ratingAvg: ratingAvg,
             ratingCounter: ratingCounter,
@@ -28,11 +35,10 @@ export const AdminGameModal = ({show, handleClose, id, name, description, price,
             quantity: parseInt(newQuantity),
         }
         //Changes are done locally so we don't have to fetch API after changes.
-        if (id === null) {
-            ///Create a new game
-
-        } else {
+        if (editMode()) {
             update(newGame)
+        } else {
+            //Creating new game
         }
         handleClose()
     }
@@ -48,20 +54,19 @@ export const AdminGameModal = ({show, handleClose, id, name, description, price,
 
     const handleImgChange = (e) => {
         setImgFile(e.target.files[0])
-        setNewImgName(e.target.files[0].name)
     }
 
     return (
         <React.Fragment>
-            <Modal show={show} onHide={handleClose}>
+            <Modal show={show} onHide={handleClose} size={"xl"} >
                 <Modal.Header closeButton>
-                    <Modal.Title>{id === null ? "Create game" : "Edit game"}</Modal.Title>
+                    <Modal.Title>{ editMode() ? "Edit game" : "Create game"}</Modal.Title>
                 </Modal.Header>
-                <Modal.Body>
+                <Modal.Body style={{'maxHeight': 'calc(100vh - 210px)', 'overflowY': 'auto'}}>
                     <h6>Name:</h6>
                     <input value={newName} onChange={(e) => setNewName(e.target.value)}/>
                     <h6>Description:</h6>
-                    <textarea rows={5} cols={40} value={newDescription}
+                    <textarea rows={5} cols={100} value={newDescription}
                               onChange={(e) => setNewDescription(e.target.value)}/>
                     <h6>Price:</h6>
                     <input type={"text"} value={newPrice} onChange={(e) => setNewPrice(e.target.value)}/>
@@ -71,6 +76,7 @@ export const AdminGameModal = ({show, handleClose, id, name, description, price,
                     <input type={"text"} value={newQuantity} onChange={(e) => setNewQuantity(e.target.value)}/>
                     <h6>Image:</h6>
                     <input onChange={handleImgChange} type="file"/>
+                    <CharacterList gameId={id} editMode={editMode} characters={characters} setCharacters={setCharacters}/>
                 </Modal.Body>
                 <Modal.Footer>
                     <Button variant="secondary" onClick={handleClose}>

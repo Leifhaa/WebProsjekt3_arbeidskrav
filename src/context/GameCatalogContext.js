@@ -1,11 +1,9 @@
 //Used for keeping the state (advantage when multiple components relies on the state)
 
 import React, {useState, createContext, useEffect} from 'react';
-import axios from 'axios';
 import {fetchGames} from "../services/GameApi";
 
 export const GameCatalogContext = createContext();
-
 export const GameCatalogProvider = (props) => {
     //All the item's
     const [games, setGames] = useState([])

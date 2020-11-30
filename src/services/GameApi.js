@@ -1,7 +1,6 @@
 //Separated logic for speaking with API.
 
 import axios from "axios";
-import {useEffect} from "react";
 import {postImage} from "./ImageApi";
 
 export const fetchGame = async (id, setGame, setLoading) => {

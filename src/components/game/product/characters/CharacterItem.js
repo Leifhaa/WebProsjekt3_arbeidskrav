@@ -8,13 +8,13 @@ const StyledRow = styled.tr`
     }
 `
 
-export const CharacterItem = ({image, name, race}) => {
+export const CharacterItem = ({gameId,image, name, race}) => {
     const loadImg = () => {
         if (image === null || image === undefined) {
             //use default img
             return require("../../../../assets/no-preview-available.png")
         }
-        return `/images/characters/${image}`
+        return `/images/characters/games/${gameId}/${image}`
     }
 
     return(

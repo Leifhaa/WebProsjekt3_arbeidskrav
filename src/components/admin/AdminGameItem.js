@@ -1,6 +1,6 @@
 import React, {useState} from "react";
 import styled from "styled-components";
-import {AdminGameModal} from "./AdminGameModal";
+import {AdminGameModal} from "./Modal/AdminGameModal";
 
 const StyledRow = styled.tr`
     .delete{

@@ -1,6 +1,5 @@
 import React, {useContext} from "react";
 import {GameCatalogContext} from "../../context/GameCatalogContext";
-import {CharacterItem} from "../game/product/characters/CharacterItem";
 import {AdminGameItem} from "./AdminGameItem";
 
 export const AdminGameList = () => {
