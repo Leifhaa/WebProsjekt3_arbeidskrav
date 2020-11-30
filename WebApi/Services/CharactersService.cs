@@ -44,5 +44,10 @@ namespace WebApi.Services
         {
             _characters.DeleteOne(game => game.id == id);
         }
+
+        public void DeleteByGame(string id)
+        {
+            var res = _characters.DeleteMany(o => o.GameId == id);
+        }
     }
 }

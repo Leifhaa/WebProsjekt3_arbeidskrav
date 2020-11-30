@@ -60,7 +60,7 @@ namespace WebApi.Controllers
             }
 
             _charactersService.Remove(id);
-            return Ok();
+            return NoContent();
         }
 
     }

@@ -43,5 +43,10 @@ namespace WebApi.Services
             var comments = _comments.Find(c => c.GameId == id).ToList();
             return comments;
         }
+
+        public void DeleteByGame(string gameId)
+        {
+            var res = _comments.DeleteMany(o => o.GameId == gameId);
+        }
     }
 }

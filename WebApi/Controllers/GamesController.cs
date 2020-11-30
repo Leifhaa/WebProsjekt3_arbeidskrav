@@ -25,9 +25,13 @@ namespace WebApi.Controllers{
 
 
         private readonly GamesService _gamesService;
+        private readonly CommentsService _commentsService;
+        private readonly CharactersService _charactersService;
 
-        public GamesController(GamesService gamesService){
+        public GamesController(GamesService gamesService, CommentsService commentsService, CharactersService charactersService){
             _gamesService = gamesService;
+            _commentsService = commentsService;
+            _charactersService = charactersService;
         }
 
         /// <summary>
@@ -157,6 +161,11 @@ namespace WebApi.Controllers{
                 return NotFound();
             }
 
+            //Cleanup characters and comments of game
+            _commentsService.DeleteByGame(id);
+            _charactersService.DeleteByGame(id);
+
+            //Delete the game
             _gamesService.Remove(game.id);
             return NoContent();
         }

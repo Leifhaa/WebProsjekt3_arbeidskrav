@@ -67,4 +67,10 @@ export const putGame = async (id, game, imgFile) => {
     return false;
 }
 
+export const deleteGame = async (gameId) => {
+    const url = `/api/games`;
+    const response = await axios.delete(`${url}/${gameId}`);
+    return response.status === 204;
+}
+
 
