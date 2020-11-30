@@ -3,7 +3,7 @@ import {Modal} from "react-bootstrap";
 import Button from "react-bootstrap/Button";
 import {updateGame} from "../../services/GameApi";
 
-export const AdminGameModal = ({show,handleClose, handleShow, id ,name, description, price, category, quantity}) => {
+export const AdminGameModal = ({show,handleClose, id ,name, description, price, category, quantity}) => {
     const [newName, setNewName] = useState(name)
     const [newDescription, setNewDescription] = useState(description)
     const [newPrice, setNewPrice] = useState(price)
@@ -11,7 +11,7 @@ export const AdminGameModal = ({show,handleClose, handleShow, id ,name, descript
     const [newQuantity, setNewQuantity] = useState(quantity)
 
     const onSave = () => {
-        const newGame = {name: newName, description: newDescription, price: parseFloat(newPrice), image: null, category: newCategory, quantity: newQuantity}
+        const newGame = {name: newName, description: newDescription, price: parseFloat(newPrice), image: null, category: newCategory, ratingAvg: 0, ratingCounter: 0, ratingSum : 115, quantity: parseInt(newQuantity), comments:[]}
 
         //onCreate
         //Create the object
@@ -22,7 +22,7 @@ export const AdminGameModal = ({show,handleClose, handleShow, id ,name, descript
     }
 
     return (
-        <>
+        <React.Fragment>
             <Modal show={show} onHide={handleClose}>
                 <Modal.Header closeButton>
                     <Modal.Title>Edit character</Modal.Title>
@@ -48,6 +48,6 @@ export const AdminGameModal = ({show,handleClose, handleShow, id ,name, descript
                     </Button>
                 </Modal.Footer>
             </Modal>
-        </>
+        </React.Fragment>
     );
 }

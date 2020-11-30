@@ -39,7 +39,12 @@ namespace WebApi.Services{
         }
 
         public void Update(string id,Game game){
-            _games.ReplaceOne(dbGame => dbGame.id == game.id, game);
+            //User already declared id in the http request, so add it if it doesn't exist.
+            if (game.id == null)
+            {
+                game.id = id;
+            }
+            _games.ReplaceOne(dbGame => dbGame.id == id, game);
         }
     }
 }

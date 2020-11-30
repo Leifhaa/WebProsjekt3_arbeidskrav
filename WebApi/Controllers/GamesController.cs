@@ -63,7 +63,7 @@ namespace WebApi.Controllers{
         /// <returns></returns>
         [HttpPut("{id:length(24)}")]
         public IActionResult Put(string id,Game gameIn){
-            var dbGame = _gamesService.GetById(gameIn.id);
+            var dbGame = _gamesService.GetById(id);
             if (dbGame == null){
                 return NotFound();
             }
