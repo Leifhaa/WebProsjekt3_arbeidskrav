@@ -18,6 +18,9 @@ export const Routes = () => {
                 <Route path="/games">
                     <GameCatalog/>
                 </Route>
+                <Route path="/admin">
+                    <GameCatalog/>
+                </Route>
 
             </Switch>
         </BrowserRouter>
