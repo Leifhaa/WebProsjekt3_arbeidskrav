@@ -1,7 +1,7 @@
 import React, {useContext, useState} from "react";
 import {Modal} from "react-bootstrap";
 import Button from "react-bootstrap/Button";
-import {updateGame} from "../../services/GameApi";
+import {putGame} from "../../services/GameApi";
 import {GameCatalogContext} from "../../context/GameCatalogContext";
 
 export const AdminGameModal = ({show, handleClose, id, name, description, price, category, quantity, ratingAvg, ratingCounter, ratingSum, image}) => {
@@ -27,26 +27,30 @@ export const AdminGameModal = ({show, handleClose, id, name, description, price,
             ratingSum: ratingSum,
             quantity: parseInt(newQuantity)
         }
+        //Changes are done locally so we don't have to fetch API after changes.
         if (id === null) {
             ///Create a new game
 
         } else {
-            //Editing existing game
-            newGame.id = id;
-            updateGame(id, newGame)
-            let updatedList = gamesState.filter(game => game.id !== id)
-            updatedList.push(newGame)
-            setGames(updatedList)
-
+            update(newGame)
         }
         handleClose()
+    }
+
+    const update = (newGame) => {
+        //Editing existing game
+        newGame.id = id;
+        putGame(newGame.id, newGame)
+        let updatedList = gamesState.filter(game => game.id !== newGame.id)
+        updatedList.push(newGame)
+        setGames(updatedList)
     }
 
     return (
         <React.Fragment>
             <Modal show={show} onHide={handleClose}>
                 <Modal.Header closeButton>
-                    <Modal.Title>{id === null ? "Create game" : "Edit character"}</Modal.Title>
+                    <Modal.Title>{id === null ? "Create game" : "Edit game"}</Modal.Title>
                 </Modal.Header>
                 <Modal.Body>
                     <h6>Name:</h6>

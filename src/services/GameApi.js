@@ -44,7 +44,7 @@ export const purchaseGame = async (id) => {
     return false;
 }
 
-export const updateGame = async (id, game) => {
+export const putGame = async (id, game) => {
     const url = `/api/games/${id}`;
     try {
         const response = await axios.put(url, game)
