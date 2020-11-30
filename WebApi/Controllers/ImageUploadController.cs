@@ -23,9 +23,15 @@ namespace WebApi.Controllers
             _hosting = hosting;
         }
 
+
+        /// <summary>
+        /// Uploads a image of a game. Returns the generated id
+        /// </summary>
+        /// <param name="file"></param>
+        /// <returns></returns>
         [HttpPost]
         [Route("games")]
-        public void UploadImage(IFormFile file)
+        public ActionResult<string> UploadImage(IFormFile file)
         {
             string imgId;
             if (IsSafe(file, out imgId))
@@ -39,8 +45,9 @@ namespace WebApi.Controllers
                 {
                     file.CopyTo(fs);
                 }
+                return Ok(imgId);
             }
-            
+            return BadRequest();
         }
 
 
@@ -62,7 +69,7 @@ namespace WebApi.Controllers
                 return false;
             }
             //2. User should never be allowed to choose the name of the file. Create a name by it's id.
-            id = Path.GetRandomFileName();
+            id = Guid.NewGuid() + ".jpg"; ;
 
             //3. Make sure size is not to huge.
             if (file.Length > _imgSizeLimit)

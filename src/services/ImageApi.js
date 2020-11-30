@@ -4,7 +4,7 @@ export const postImage = async (path,imgFile) => {
     let data = new FormData();
     data.append("file", imgFile)
 
-    const response = await axios({
+    return await axios({
             method: "POST",
             url: `/api/imageupload/${path}`,
             data: data,
