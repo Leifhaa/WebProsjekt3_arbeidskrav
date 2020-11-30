@@ -1,7 +1,7 @@
 import React, {useContext, useState} from "react";
 import {Modal} from "react-bootstrap";
 import Button from "react-bootstrap/Button";
-import {putGame} from "../../../services/GameApi";
+import {postGame, putGame} from "../../../services/GameApi";
 import {GameCatalogContext} from "../../../context/GameCatalogContext";
 import {CharacterList} from "./CharacterList";
 
@@ -18,7 +18,7 @@ export const GameModal = ({show, handleClose, id, name, description, price, cate
 
     const editMode = () => {
         //We're editing if id exists. Otherwise we're creating new game
-        return (id !== null)
+        return (id !== null && id !== undefined)
     }
 
     const onSave = () => {
@@ -39,8 +39,13 @@ export const GameModal = ({show, handleClose, id, name, description, price, cate
             update(newGame)
         } else {
             //Creating new game
+            create(newGame)
         }
         handleClose()
+    }
+    const create = async (newGame) => {
+        await postGame(newGame, imgFile)
+        setGames([...gamesState, newGame])
     }
 
     const update = (newGame) => {
@@ -92,6 +97,11 @@ export const GameModal = ({show, handleClose, id, name, description, price, cate
 }
 
 GameModal.defaultProps = {
+    name:"",
+    description:"",
+    price: 0,
+    category: "",
+    quantity: 0,
     ratingAvg: 0,
     ratingCounter: 0,
     ratingSum: 0,

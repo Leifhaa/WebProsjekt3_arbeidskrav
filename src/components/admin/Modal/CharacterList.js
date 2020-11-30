@@ -16,7 +16,9 @@ const StyledTable = styled.table`
 
 export const CharacterList = ({gameId, editMode, characters, setCharacters}) => {
     useEffect(() => {
-        fetchCharacters(gameId, setCharacters)
+        if (editMode()){
+            fetchCharacters(gameId, setCharacters)
+        }
     }, [])
 
 
@@ -24,7 +26,7 @@ export const CharacterList = ({gameId, editMode, characters, setCharacters}) => 
     const renderTable = () => {
         return (
             <React.Fragment>
-                {editMode ?
+                {editMode() ?
                     <StyledTable>
                         <tbody>
                         <tr>

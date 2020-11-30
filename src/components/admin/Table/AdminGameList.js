@@ -2,6 +2,7 @@ import React, {useContext} from "react";
 import {GameCatalogContext} from "../../../context/GameCatalogContext";
 import {AdminGameItem} from "./AdminGameItem";
 import styled from "styled-components";
+import {AdminGameCreate} from "./AdminGameCreate";
 
 
 const StyledTable = styled.table`
@@ -41,6 +42,7 @@ export const AdminGameList = () => {
                 )
             })
             }
+            <AdminGameCreate/>
             </tbody>
         </StyledTable>
     )

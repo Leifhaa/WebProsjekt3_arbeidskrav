@@ -42,7 +42,6 @@ export const GameList = () => {
         <section>
             <StyledRow>
                 {loadingState ? renderLoading() : renderGames()}
-                <span>Number of records:{games.length}</span>
             </StyledRow>
         </section>
     )
