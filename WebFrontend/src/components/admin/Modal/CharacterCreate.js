@@ -27,14 +27,16 @@ export const CharacterCreate = ({gameId, characters,setCharacters}) => {
         //Add created character.
         if (await createCharacter(gameId,character, imgFile)){
             setCharacters([...characters, character])
+            setName("")
+            setRace("")
         }
     }
 
     return (
         <StyledRow>
             <th><input onChange={handleImgChange} type="file"/></th>
-            <th><input type="text" onChange={(e) => setName(e.target.value)}/></th>
-            <th><input type="text" onChange={(e) => setRace(e.target.value)}/></th>
+            <th><input type="text" value={name} onChange={(e) => setName(e.target.value)}/></th>
+            <th><input type="text" value={race} onChange={(e) => setRace(e.target.value)}/></th>
             <th><Button onClick={() => create()} className={"create btn btn-success"}>Add</Button></th>
         </StyledRow>
     )
