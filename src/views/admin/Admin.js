@@ -2,7 +2,7 @@ import styled from "styled-components";
 import {GameCatalogContext, GameCatalogProvider} from "../../context/GameCatalogContext";
 import {GameList} from "../../components/game/catalog/GameList";
 import React, {useContext} from "react";
-import {AdminGameList} from "../../components/admin/AdminGameList";
+import {AdminGameList} from "../../components/admin/Table/AdminGameList";
 
 const Styled = styled.section`
   h1{
