@@ -1,6 +1,6 @@
 import React, {useState} from "react";
 import styled from "styled-components";
-import {AdminGameModal} from "./Modal/AdminGameModal";
+import {GameModal} from "./Modal/GameModal";
 
 const StyledRow = styled.tr`
     .delete{
@@ -31,7 +31,7 @@ export const AdminGameItem = ({game}) => {
             <td>{game.name}</td>
             <td className={"delete"}>Delete</td>
             <td className={"edit"} onClick={() => setShowModal(true)}>Edit</td>
-            {showModal && <AdminGameModal show={showModal} handleShow={handleShow} handleClose={handleClose} {...game}/>}
+            {showModal && <GameModal show={showModal} handleShow={handleShow} handleClose={handleClose} {...game}/>}
         </StyledRow>
     )
 }

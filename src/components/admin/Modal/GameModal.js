@@ -5,7 +5,7 @@ import {putGame} from "../../../services/GameApi";
 import {GameCatalogContext} from "../../../context/GameCatalogContext";
 import {CharacterList} from "./CharacterList";
 
-export const AdminGameModal = ({show, handleClose, id, name, description, price, category, quantity, ratingAvg, ratingCounter, ratingSum, image}) => {
+export const GameModal = ({show, handleClose, id, name, description, price, category, quantity, ratingAvg, ratingCounter, ratingSum, image}) => {
     const {games} = useContext(GameCatalogContext)
     const [gamesState, setGames] = games
     const [characters, setCharacters] = useState([])
@@ -91,7 +91,7 @@ export const AdminGameModal = ({show, handleClose, id, name, description, price,
     );
 }
 
-AdminGameModal.defaultProps = {
+GameModal.defaultProps = {
     ratingAvg: 0,
     ratingCounter: 0,
     ratingSum: 0,

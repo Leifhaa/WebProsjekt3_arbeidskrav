@@ -1,12 +1,10 @@
 import React, {useState} from "react";
 import {createCharacter} from "../../../services/CharacterApi";
 import styled from "styled-components";
+import {Button} from "react-bootstrap";
 
 const StyledRow = styled.tr`
-    .create{
-      color: darkgreen;
-      cursor:pointer;
-    }
+
 `
 
 export const CharacterCreate = ({gameId, characters,setCharacters}) => {
@@ -37,7 +35,7 @@ export const CharacterCreate = ({gameId, characters,setCharacters}) => {
             <th><input onChange={handleImgChange} type="file"/></th>
             <th><input type="text" onChange={(e) => setName(e.target.value)}/></th>
             <th><input type="text" onChange={(e) => setRace(e.target.value)}/></th>
-            <th><span onClick={() => create()} className={"create"}>Add</span></th>
+            <th><Button onClick={() => create()} className={"create btn btn-success"}>Add</Button></th>
         </StyledRow>
     )
 }

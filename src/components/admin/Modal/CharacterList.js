@@ -34,7 +34,7 @@ export const CharacterList = ({gameId, editMode, characters, setCharacters}) => 
                         </tr>
                         {characters.map((character, index) => {
                             return (
-                                <CharacterItem key={index} name={character.name} image={character.image}
+                                <CharacterItem key={index} id={character.id} name={character.name} image={character.image}
                                                race={character.race}/>
                             )
                         })

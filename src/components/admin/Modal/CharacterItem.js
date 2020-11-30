@@ -1,24 +1,16 @@
 import React from "react";
 import styled from "styled-components";
+import {CharacterDelete} from "./CharacterDelete";
 
-const StyledRow = styled.tr`
-    img{
-      max-height: 100px;
-    }
-    .delete{
-      color: red;
-      cursor:pointer;
-    }
-`
 
-export const CharacterItem = ({image, name, race}) => {
+
+export const CharacterItem = ({id,image, name, race}) => {
     return(
-        <StyledRow>
-            <td>
-            </td>
+        <tr>
+            <td>{image}</td>
             <td>{name}</td>
             <td>{race}</td>
-            <td className={"delete"}>Delete</td>
-        </StyledRow>
+            <CharacterDelete id={id}/>
+        </tr>
     )
 }
