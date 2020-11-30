@@ -19,8 +19,6 @@ export const GameList = () => {
     const [gamesState] = games
     const [loadingState] = loading
 
-    const foo = true
-
 
     const renderGames = () => {
         //Fetch from database

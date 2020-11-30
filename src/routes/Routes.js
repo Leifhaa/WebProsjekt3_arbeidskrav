@@ -4,6 +4,7 @@ import {GameCatalog} from "../views/games/catalog/GameCatalog";
 import React from "react";
 import {MainNavivation} from "../components/navigation/MainNavigation";
 import {GameProduct} from "../views/games/product/GameProduct";
+import {Admin} from "../views/admin/Admin";
 
 export const Routes = () => {
 
@@ -19,7 +20,7 @@ export const Routes = () => {
                     <GameCatalog/>
                 </Route>
                 <Route path="/admin">
-                    <GameCatalog/>
+                    <Admin/>
                 </Route>
 
             </Switch>
