@@ -17,7 +17,7 @@ export const GameCommentsList = () => {
 
     useEffect(() => {
         fetchComments(gameState.id, setComments)
-    }, [])
+    }, [gameState.id])
 
     const addComment = (comment) => {
         setComments([...comments, comment])

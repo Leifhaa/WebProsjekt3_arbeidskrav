@@ -28,7 +28,6 @@ namespace WebApi.Controllers
             _gameService = gameService;
         }
 
-
         /// <summary>
         /// Uploads a image of a game. Returns the generated id
         /// </summary>

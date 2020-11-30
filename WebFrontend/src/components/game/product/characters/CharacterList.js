@@ -20,7 +20,7 @@ export const CharactersList = () => {
 
     useEffect(() => {
         fetchCharacters(gameState.id, setCharacters)
-    }, [])
+    }, [gameState.id])
 
     const renderTable = () => {
         return (

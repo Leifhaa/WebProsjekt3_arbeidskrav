@@ -15,7 +15,7 @@ export const GameProductProvider = (props) => {
 
     useEffect(() => {
         fetchGame(id, setGame, setLoading);
-    }, [])
+    }, [id])
 
     //returns components which should have access to this context
     return (

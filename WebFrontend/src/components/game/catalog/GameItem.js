@@ -46,7 +46,7 @@ export const GameItem = ({id, name, price, image, ratingAvg, quantity}) => {
         return `/images/games/${image}`
     }
 
-    const handleOnClick = useCallback(() => history.push(`/games/${id}`), [history]);
+    const handleOnClick = useCallback(() => history.push(`/games/${id}`), [history, id]);
 
     return (
         <StyledCol xs={12} sm={6} md={4} lg={3} xl={2}>

@@ -50,7 +50,7 @@ export const GameFilter = ({setFiltered}) => {
             });
         }
         setFiltered(filtered)
-    }, [tmpSearch, gamesState, orderType])
+    }, [tmpSearch, gamesState, orderType, setFiltered])
 
     /*  Add delay for searching so we don't start searching immediate if there's a input in the search field
         I'm currently searching locally, but if there was multiple pages or many elements, a search via API would be more beneficial.

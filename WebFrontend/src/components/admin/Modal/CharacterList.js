@@ -15,10 +15,10 @@ const StyledTable = styled.table`
 
 export const CharacterList = ({gameId, editMode, characters, setCharacters}) => {
     useEffect(() => {
-        if (editMode()){
+        if (editMode){
             fetchCharacters(gameId, setCharacters)
         }
-    }, [])
+    }, [editMode, gameId, setCharacters])
 
 
 

@@ -16,10 +16,10 @@ export const GameModal = ({show, handleClose, id, name, description, price, cate
     const [newQuantity, setNewQuantity] = useState(quantity)
     const [imgFile, setImgFile] = useState(null)
 
-    const editMode = () => {
-        //We're editing if id exists. Otherwise we're creating new game
-        return (id !== null && id !== undefined)
-    }
+    //True if editing. False if creating
+    const [editMode] = useState(id !== null && id !== undefined)
+
+
 
     const onSave = () => {
         //Create game object
@@ -35,7 +35,7 @@ export const GameModal = ({show, handleClose, id, name, description, price, cate
             quantity: parseInt(newQuantity),
         }
         //Changes are done locally so we don't have to fetch API after changes.
-        if (editMode()) {
+        if (editMode) {
             update(newGame)
         } else {
             //Creating new game
@@ -65,7 +65,7 @@ export const GameModal = ({show, handleClose, id, name, description, price, cate
         <React.Fragment>
             <Modal show={show} onHide={handleClose} size={"xl"} >
                 <Modal.Header closeButton>
-                    <Modal.Title>{ editMode() ? "Edit game" : "Create game"}</Modal.Title>
+                    <Modal.Title>{ editMode ? "Edit game" : "Create game"}</Modal.Title>
                 </Modal.Header>
                 <Modal.Body style={{'maxHeight': 'calc(100vh - 210px)', 'overflowY': 'auto'}}>
                     <h6>Name:</h6>
