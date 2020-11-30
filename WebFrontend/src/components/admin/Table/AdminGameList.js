@@ -4,7 +4,6 @@ import {AdminGameItem} from "./AdminGameItem";
 import styled from "styled-components";
 import {AdminGameCreate} from "./AdminGameCreate";
 
-
 const StyledTable = styled.table`
       border:1px solid black;
       margin-left:auto;
@@ -21,8 +20,6 @@ const StyledTable = styled.table`
       }
   
 `
-
-
 export const AdminGameList = () => {
     const {games} = useContext(GameCatalogContext)
     //Retrieve games from the context

@@ -8,8 +8,7 @@ const Styled = styled.section`
     text-align: center;
 `
 
-export const Admin = (props) => {
-
+export const Admin = () => {
     return(
         <Styled>
             <h1>Welcome to admin panel!</h1>

@@ -13,13 +13,13 @@ const StyledTable = styled.table`
     }
 `
 
+//Note: Could changed to using context, but I prefer passing props here.
 export const CharacterList = ({gameId, editMode, characters, setCharacters}) => {
     useEffect(() => {
-        if (editMode){
+        if (editMode) {
             fetchCharacters(gameId, setCharacters)
         }
     }, [editMode, gameId, setCharacters])
-
 
 
     const renderTable = () => {
@@ -35,8 +35,10 @@ export const CharacterList = ({gameId, editMode, characters, setCharacters}) => 
                         </tr>
                         {characters.map((character, index) => {
                             return (
-                                <CharacterItem key={index} id={character.id} name={character.name} image={character.image}
-                                               race={character.race} characters={characters} setCharacters={setCharacters}/>
+                                <CharacterItem key={index} id={character.id} name={character.name}
+                                               image={character.image}
+                                               race={character.race} characters={characters}
+                                               setCharacters={setCharacters}/>
                             )
                         })
                         }
@@ -52,13 +54,13 @@ export const CharacterList = ({gameId, editMode, characters, setCharacters}) => 
             </React.Fragment>)
     }
 
-    //Note: Could changed to using context, but I prefer passing props.
     return (
         <React.Fragment>
             <h6>Character list:</h6>
             {editMode ?
                 renderTable()
-                : <p>Editing characters is only allowed when editing a game, not when creating a game.</p>
+                :
+                <p>Editing characters is only allowed when editing a game, not when creating a game.</p>
             }
         </React.Fragment>
     )

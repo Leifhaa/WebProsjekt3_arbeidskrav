@@ -6,7 +6,6 @@ import Spinner from "react-bootstrap/Spinner";
 import {GameCatalogContext} from "../../../context/GameCatalogContext";
 import {GameFilter} from "./GameFilter";
 
-
 const StyledRow = styled(Row)`
   display:flex;
   flex-wrap: wrap;

@@ -8,16 +8,13 @@ import {GameRating} from "./GameRating";
 
 const StyledCol = styled(Col)`
   text-align: center;
-
    .game-title{
      padding:10px;
      font-size:20px;
    }
-    
    .game-price{
      font-size:30px;
    }
-    
   .game-item-card:hover {
     transform: scale(1.02); /* (150% zoom - Note: if the zoom is too large, it will go outside of the viewport) */
     cursor: pointer;
@@ -30,9 +27,7 @@ const StyledCol = styled(Col)`
     width: 100%;
     height: 370px;
   }
- 
 `
-
 
 export const GameItem = ({id, name, price, image, ratingAvg, quantity}) => {
     const history = useHistory();

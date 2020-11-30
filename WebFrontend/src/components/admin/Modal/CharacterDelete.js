@@ -1,13 +1,8 @@
 import React from "react";
-import styled from "styled-components";
 import {Button} from "react-bootstrap";
 import {deleteCharacter} from "../../../services/CharacterApi";
 
-const StyledTh = styled.th`
-  
-      color: red;
-      cursor:pointer;
-`
+
 export const CharacterDelete = ({id, characters, setCharacters}) => {
     const delCharacter = async () => {
         if (await deleteCharacter(id)){
@@ -17,8 +12,8 @@ export const CharacterDelete = ({id, characters, setCharacters}) => {
     }
 
     return(
-        <StyledTh>
+        <th>
             <Button onClick={() => delCharacter()}  className={"btn btn-danger"}>Delete</Button>
-        </StyledTh>
+        </th>
     )
 }

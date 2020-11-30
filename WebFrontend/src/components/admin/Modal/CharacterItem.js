@@ -1,8 +1,6 @@
 import React from "react";
 import {CharacterDelete} from "./CharacterDelete";
 
-
-
 export const CharacterItem = ({id,image, name, race, characters, setCharacters}) => {
     return(
         <tr>

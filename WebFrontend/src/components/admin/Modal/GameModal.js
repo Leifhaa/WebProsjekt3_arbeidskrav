@@ -5,7 +5,7 @@ import {postGame, putGame} from "../../../services/GameApi";
 import {GameCatalogContext} from "../../../context/GameCatalogContext";
 import {CharacterList} from "./CharacterList";
 
-//Modal si used for both creating and editing a game
+//Modal is reused in both creating and editing a game
 export const GameModal = ({show, handleClose, id, name, description, price, category, quantity, ratingAvg, ratingCounter, ratingSum}) => {
     const {games} = useContext(GameCatalogContext)
     const [gamesState, setGames] = games

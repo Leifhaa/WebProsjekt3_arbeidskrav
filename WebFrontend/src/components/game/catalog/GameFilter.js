@@ -5,13 +5,11 @@ import styled from "styled-components";
 //Can be low when sever is on local machine. Otherwise 500-700ms recommended
 const executionDelayInMs = 100;
 
-
 const StyledForm = styled.form`
   label{
     padding:10px;
   }
 `
-
 
 export const GameFilter = ({setFiltered}) => {
     const {games} = useContext(GameCatalogContext)

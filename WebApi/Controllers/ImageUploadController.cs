@@ -19,7 +19,7 @@ namespace WebApi.Controllers
         private readonly GamesService _gameService;
 
 
-        //Max img size (taken from the appsettings.json)
+        //Max img size
         private readonly long _imgSizeLimit = 3000000;
 
         public ImageUploadController(IWebHostEnvironment hosting, GamesService gameService)
