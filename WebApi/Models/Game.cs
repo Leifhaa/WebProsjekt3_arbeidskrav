@@ -46,10 +46,6 @@ namespace WebApi.Models{
         /// Number of games in stock in store
         /// </summary>
         public int Quantity { get; set; }
-        /// <summary>
-        /// Customer comments on the game.
-        /// </summary>
-        public IEnumerable<string> Comments { get; set; }
 
     }
 

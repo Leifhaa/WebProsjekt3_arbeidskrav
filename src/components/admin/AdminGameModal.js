@@ -2,8 +2,13 @@ import React, {useContext, useState} from "react";
 import {Modal} from "react-bootstrap";
 import Button from "react-bootstrap/Button";
 import {updateGame} from "../../services/GameApi";
+import {GameCatalogContext} from "../../context/GameCatalogContext";
 
-export const AdminGameModal = ({show,handleClose, id ,name, description, price, category, quantity}) => {
+export const AdminGameModal = ({show, handleClose, id, name, description, price, category, quantity, ratingAvg, ratingCounter, ratingSum, image}) => {
+    const {games} = useContext(GameCatalogContext)
+    const [gamesState, setGames] = games
+
+
     const [newName, setNewName] = useState(name)
     const [newDescription, setNewDescription] = useState(description)
     const [newPrice, setNewPrice] = useState(price)
@@ -11,13 +16,29 @@ export const AdminGameModal = ({show,handleClose, id ,name, description, price, 
     const [newQuantity, setNewQuantity] = useState(quantity)
 
     const onSave = () => {
-        const newGame = {name: newName, description: newDescription, price: parseFloat(newPrice), image: null, category: newCategory, ratingAvg: 0, ratingCounter: 0, ratingSum : 115, quantity: parseInt(newQuantity), comments:[]}
+        let newGame = {
+            name: newName,
+            description: newDescription,
+            price: parseFloat(newPrice),
+            image: image,
+            category: newCategory,
+            ratingAvg: ratingAvg,
+            ratingCounter: ratingCounter,
+            ratingSum: ratingSum,
+            quantity: parseInt(newQuantity)
+        }
+        if (id === null) {
+            ///Create a new game
 
-        //onCreate
-        //Create the object
+        } else {
+            //Editing existing game
+            newGame.id = id;
+            updateGame(id, newGame)
+            let updatedList = gamesState.filter(game => game.id !== id)
+            updatedList.push(newGame)
+            setGames(updatedList)
 
-        //onEdit
-        updateGame(id, newGame)
+        }
         handleClose()
     }
 
@@ -29,9 +50,10 @@ export const AdminGameModal = ({show,handleClose, id ,name, description, price, 
                 </Modal.Header>
                 <Modal.Body>
                     <h6>Name:</h6>
-                    <input value={newName}  onChange={(e) => setNewName(e.target.value)}/>
+                    <input value={newName} onChange={(e) => setNewName(e.target.value)}/>
                     <h6>Description:</h6>
-                    <textarea rows={5} cols={40} value={newDescription} onChange={(e) => setNewDescription(e.target.value)}/>
+                    <textarea rows={5} cols={40} value={newDescription}
+                              onChange={(e) => setNewDescription(e.target.value)}/>
                     <h6>Price:</h6>
                     <input type={"text"} value={newPrice} onChange={(e) => setNewPrice(e.target.value)}/>
                     <h6>Category:</h6>
@@ -50,4 +72,11 @@ export const AdminGameModal = ({show,handleClose, id ,name, description, price, 
             </Modal>
         </React.Fragment>
     );
+}
+
+AdminGameModal.defaultProps = {
+    ratingAvg: 0,
+    ratingCounter: 0,
+    ratingSum: 0,
+    image: null
 }
