@@ -10,10 +10,7 @@ import {GameFilter} from "./GameFilter";
 const StyledRow = styled(Row)`
   display:flex;
   flex-wrap: wrap;
-  
 `
-
-
 
 export const GameList = () => {
     //Retrieve games from the context

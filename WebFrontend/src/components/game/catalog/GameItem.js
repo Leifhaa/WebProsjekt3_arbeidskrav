@@ -37,7 +37,6 @@ const StyledCol = styled(Col)`
 export const GameItem = ({id, name, price, image, ratingAvg, quantity}) => {
     const history = useHistory();
 
-
     const loadImageSrc = () => {
         if (image === null){
             //use default img

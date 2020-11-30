@@ -5,7 +5,8 @@ import {postGame, putGame} from "../../../services/GameApi";
 import {GameCatalogContext} from "../../../context/GameCatalogContext";
 import {CharacterList} from "./CharacterList";
 
-export const GameModal = ({show, handleClose, id, name, description, price, category, quantity, ratingAvg, ratingCounter, ratingSum, image}) => {
+//Modal si used for both creating and editing a game
+export const GameModal = ({show, handleClose, id, name, description, price, category, quantity, ratingAvg, ratingCounter, ratingSum}) => {
     const {games} = useContext(GameCatalogContext)
     const [gamesState, setGames] = games
     const [characters, setCharacters] = useState([])
@@ -44,12 +45,13 @@ export const GameModal = ({show, handleClose, id, name, description, price, cate
         handleClose()
     }
     const create = async (newGame) => {
+        //Create new game
         await postGame(newGame, imgFile)
         setGames([...gamesState, newGame])
     }
 
     const update = (newGame) => {
-        //Editing existing game
+        //Update existing game
         newGame.id = id;
         putGame(newGame.id, newGame, imgFile)
         let updatedList = gamesState.filter(game => game.id !== newGame.id)
@@ -88,7 +90,7 @@ export const GameModal = ({show, handleClose, id, name, description, price, cate
                         Close
                     </Button>
                     <Button variant="primary" onClick={onSave}>
-                        Save Changes
+                        Save
                     </Button>
                 </Modal.Footer>
             </Modal>
