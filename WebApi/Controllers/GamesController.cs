@@ -40,11 +40,9 @@ namespace WebApi.Controllers{
         /// <returns></returns>
         [HttpGet]
         public ActionResult<List<Game>> Get(){
-            //Todo: Return status code
-            //TOdo :Trycatching.
-
             return _gamesService.GetAll();
         }
+
 
         /// <summary>
         /// Retrieves a game by it's id

@@ -2,27 +2,30 @@ import React, {useEffect, useState, useContext} from 'react';
 import {GameItem} from './GameItem';
 import Row from "react-bootstrap/Row";
 import styled from "styled-components";
-import Col from "react-bootstrap/Col";
 import Spinner from "react-bootstrap/Spinner";
 import {GameCatalogContext} from "../../../context/GameCatalogContext";
+import {GameFilter} from "./GameFilter";
 
 
 const StyledRow = styled(Row)`
   display:flex;
   flex-wrap: wrap;
+  
 `
 
 
-export const GameList = () => {
-    const {games, loading} = useContext(GameCatalogContext)
-    //Retrieve games from the context
-    const [gamesState] = games
-    const [loadingState] = loading
 
+export const GameList = () => {
+    //Retrieve games from the context
+    const {games, loading} = useContext(GameCatalogContext)
+    const [gamesState] = games
+    const [gamesFiltered, setFiltered] = useState(gamesState)
+    //How the games are ordered. 0 = name, 1 = price
+    const [loadingState] = loading
 
     const renderGames = () => {
         //Fetch from database
-        return gamesState.map((game, i) => {
+        return gamesFiltered.map((game, i) => {
             return <GameItem key={i} {...game}/>
         });
     }
@@ -40,6 +43,7 @@ export const GameList = () => {
 
     return (
         <section>
+            <GameFilter setFiltered={setFiltered}/>
             <StyledRow>
                 {loadingState ? renderLoading() : renderGames()}
             </StyledRow>

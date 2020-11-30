@@ -10,9 +10,9 @@ export const fetchGame = async (id, setGame, setLoading) => {
     setLoading(false)
 }
 
-export const fetchGames = async (setGames, setLoading) => {
+export const fetchGames = async (setGames, setLoading, searchTxt) => {
     const url = "/api/games";
-    const response = await axios.get(url)
+    const response = await axios.get(url, searchTxt)
     setGames(response.data);
     setLoading(false)
 }

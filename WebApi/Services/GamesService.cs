@@ -25,6 +25,11 @@ namespace WebApi.Services{
             return _games.Find(game => true).ToList();
         }
 
+        public List<Game> GetByName(string name)
+        {
+            return _games.Find(game => game.Name.Contains(name)).ToList();
+        }
+
         public Game GetById(string id){
             return _games.Find(game => game.id == id ).SingleOrDefault();
         }

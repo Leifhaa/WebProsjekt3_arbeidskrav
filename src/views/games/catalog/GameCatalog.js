@@ -11,7 +11,7 @@ const Styled = styled.section`
 export const GameCatalog = (props) => {
     return(
         <Styled>
-            <h3>Current games:</h3>
+            <h1 style={{textAlign: "center"}}>Current games:</h1>
             <GameCatalogProvider>
                 <GameList/>
             </GameCatalogProvider>
