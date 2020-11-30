@@ -43,5 +43,25 @@ namespace WebApi.Controllers
             return character;
         }
 
+
+        /// <summary>
+        /// Deletes a character
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
+        [HttpDelete("{id:length(24)}")]
+        public IActionResult Delete(string id)
+        {
+            var character = _charactersService.getById(id);
+
+            if (character == null)
+            {
+                return NotFound();
+            }
+
+            _charactersService.Remove(id);
+            return Ok();
+        }
+
     }
 }

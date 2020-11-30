@@ -29,3 +29,11 @@ export const createCharacter = async (id, character, imgFile) => {
     }
     return false;
 }
+
+export const deleteCharacter = async (characterId) => {
+    const url = `/api/characters`;
+    const response = await axios.delete(`${url}/${characterId}`);
+    return response.status === 204;
+}
+
+

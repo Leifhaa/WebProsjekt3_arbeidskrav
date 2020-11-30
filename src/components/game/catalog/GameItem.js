@@ -45,7 +45,6 @@ export const GameItem = ({id, name, price, image, ratingAvg, quantity}) => {
 
     const handleDelete = () => {
         const url = `/api/games`
-        axios.delete(`${url}/${id}`);
     }
 
     const loadImageSrc = () => {

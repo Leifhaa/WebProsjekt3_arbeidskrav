@@ -39,5 +39,10 @@ namespace WebApi.Services
             _characters.InsertOne(character);
             return character;
         }
+
+        public void Remove(object id)
+        {
+            _characters.DeleteOne(game => game.id == id);
+        }
     }
 }

@@ -35,7 +35,7 @@ export const CharacterList = ({gameId, editMode, characters, setCharacters}) => 
                         {characters.map((character, index) => {
                             return (
                                 <CharacterItem key={index} id={character.id} name={character.name} image={character.image}
-                                               race={character.race}/>
+                                               race={character.race} characters={characters} setCharacters={setCharacters}/>
                             )
                         })
                         }
@@ -51,6 +51,7 @@ export const CharacterList = ({gameId, editMode, characters, setCharacters}) => 
             </React.Fragment>)
     }
 
+    //Note: Could changed to using context, but I prefer passing props.
     return (
         <React.Fragment>
             <h6>Character list:</h6>
