@@ -22,6 +22,8 @@ export const createCharacter = async (id, character, imgFile) => {
     try {
         const response = await axios.post(url, character)
         if (response.status === 200) {
+            //set the id of the created character
+            character.id = response.data.id;
             return true;
         }
     } catch (error) {

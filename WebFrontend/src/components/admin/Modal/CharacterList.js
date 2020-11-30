@@ -25,7 +25,7 @@ export const CharacterList = ({gameId, editMode, characters, setCharacters}) => 
     const renderTable = () => {
         return (
             <React.Fragment>
-                {editMode() ?
+                {editMode ?
                     <StyledTable>
                         <tbody>
                         <tr>
