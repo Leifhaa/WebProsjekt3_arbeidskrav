@@ -6,8 +6,8 @@ import {GameRater} from "./GameRater";
 import Button from "react-bootstrap/Button";
 import {GameCommentsList} from "./comment/CommentList";
 import {fetchGame, purchaseGame} from "../../../services/GameApi";
-import {GameCatalogContext} from "../../../context/GameCatalogContext";
 import {GameProductContext} from "../../../context/GameProductContext";
+import {CharactersList} from "./characters/CharacterList";
 
 const Styled = styled.div`
     .game-cover{
@@ -42,7 +42,7 @@ export const GameArticle = () => {
             //use default img
             return require("../../../assets/no-preview-available.png")
         }
-        return `/images/${gameState.image}`
+        return `/images/games/${gameState.image}`
     }
 
 
@@ -66,7 +66,7 @@ export const GameArticle = () => {
                     <p>{gameState.description}</p>
                     <br/>
                     <h3>Game characters:</h3>
-                    <GameCharacterList/>
+                    <CharactersList/>
                     <br/>
                     <h3>Comments from customers</h3>
                     <GameCommentsList/>
