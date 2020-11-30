@@ -33,18 +33,30 @@ namespace WebApi.Services
             return characters;
         }
 
-
+        /// <summary>
+        /// Creates a character
+        /// </summary>
+        /// <param name="character"></param>
+        /// <returns></returns>
         public Character Create(Character character)
         {
             _characters.InsertOne(character);
             return character;
         }
 
-        public void Remove(object id)
+        /// <summary>
+        /// Deletes a character by id
+        /// </summary>
+        /// <param name="id"></param>
+        public void Remove(string id)
         {
             _characters.DeleteOne(game => game.id == id);
         }
 
+        /// <summary>
+        /// Deletes all characters of a game
+        /// </summary>
+        /// <param name="id"></param>
         public void DeleteByGame(string id)
         {
             var res = _characters.DeleteMany(o => o.GameId == id);

@@ -44,6 +44,10 @@ namespace WebApi.Services
             return comments;
         }
 
+        /// <summary>
+        /// Deletes all comments of a game
+        /// </summary>
+        /// <param name="gameId"></param>
         public void DeleteByGame(string gameId)
         {
             var res = _comments.DeleteMany(o => o.GameId == gameId);
