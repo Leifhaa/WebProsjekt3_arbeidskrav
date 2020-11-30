@@ -1,4 +1,4 @@
-﻿namespace WebApi.Dto
+﻿namespace WebApi.DTO
 {
     /// <summary>
     /// A data transfer object for sending and recieving game rating specifics

@@ -1,7 +1,7 @@
 using System;
 using System.Collections.Generic;
 using Microsoft.AspNetCore.Mvc;
-using WebApi.Dto;
+using WebApi.DTO;
 using WebApi.Models;
 using WebApi.Services;
 
