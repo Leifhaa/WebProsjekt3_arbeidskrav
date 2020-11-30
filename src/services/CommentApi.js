@@ -13,3 +13,5 @@ export const createComment = async (id, comment) => {
     return response.status === 200;
 }
 
+
+

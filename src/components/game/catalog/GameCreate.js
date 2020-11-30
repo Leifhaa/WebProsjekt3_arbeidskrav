@@ -19,22 +19,9 @@ export const GameCreate = () => {
         setImgName(e.target.value)
     }
 
-    const handleImgChange = (e) => {
-        setImgFile(e.target.files[0])
-    }
 
-    const uploadImg = () => {
-        let data = new FormData();
-        data.append("file", imgFile)
 
-        axios({
-            method: "POST",
-            url: "/imageupload/uploadimage",
-            data: data,
-            config: {headers: {"Content-Type": "multipart/form-data"}}
-            }
-        )
-    }
+
 
     const createGame = () => {
         const url = "/api/games";
@@ -54,8 +41,7 @@ export const GameCreate = () => {
             <input id="image" onChange={onImgNameChange}  type="text" value={imageName}/>
             <input onClick={createGame} type="button" value="Save new game"/>
             <br/>
-            <input onChange={handleImgChange} type="file"/>
-            <input onClick={uploadImg} type="button" value="Upload Image"/>
+
         </selection>
     )
 }

@@ -7,25 +7,25 @@ import {GameCatalogContext} from "../../context/GameCatalogContext";
 export const AdminGameModal = ({show, handleClose, id, name, description, price, category, quantity, ratingAvg, ratingCounter, ratingSum, image}) => {
     const {games} = useContext(GameCatalogContext)
     const [gamesState, setGames] = games
-
-
     const [newName, setNewName] = useState(name)
     const [newDescription, setNewDescription] = useState(description)
     const [newPrice, setNewPrice] = useState(price)
     const [newCategory, setNewCategory] = useState(category)
     const [newQuantity, setNewQuantity] = useState(quantity)
+    const [newImgName, setNewImgName] = useState(image)
+    const [imgFile, setImgFile] = useState(null)
 
     const onSave = () => {
         let newGame = {
             name: newName,
             description: newDescription,
             price: parseFloat(newPrice),
-            image: image,
+            image: newImgName,
             category: newCategory,
             ratingAvg: ratingAvg,
             ratingCounter: ratingCounter,
             ratingSum: ratingSum,
-            quantity: parseInt(newQuantity)
+            quantity: parseInt(newQuantity),
         }
         //Changes are done locally so we don't have to fetch API after changes.
         if (id === null) {
@@ -40,10 +40,15 @@ export const AdminGameModal = ({show, handleClose, id, name, description, price,
     const update = (newGame) => {
         //Editing existing game
         newGame.id = id;
-        putGame(newGame.id, newGame)
+        putGame(newGame.id, newGame, imgFile)
         let updatedList = gamesState.filter(game => game.id !== newGame.id)
         updatedList.push(newGame)
         setGames(updatedList)
+    }
+
+    const handleImgChange = (e) => {
+        setImgFile(e.target.files[0])
+        setNewImgName(e.target.files[0].name)
     }
 
     return (
@@ -64,6 +69,8 @@ export const AdminGameModal = ({show, handleClose, id, name, description, price,
                     <input type={"text"} value={newCategory} onChange={(e) => setNewCategory(e.target.value)}/>
                     <h6>Quantity:</h6>
                     <input type={"text"} value={newQuantity} onChange={(e) => setNewQuantity(e.target.value)}/>
+                    <h6>Image:</h6>
+                    <input onChange={handleImgChange} type="file"/>
                 </Modal.Body>
                 <Modal.Footer>
                     <Button variant="secondary" onClick={handleClose}>

@@ -2,6 +2,7 @@
 
 import axios from "axios";
 import {useEffect} from "react";
+import {postImage} from "./ImageApi";
 
 export const fetchGame = async (id, setGame, setLoading) => {
     const url = `/api/games/${id}`;
@@ -44,7 +45,12 @@ export const purchaseGame = async (id) => {
     return false;
 }
 
-export const putGame = async (id, game) => {
+export const putGame = async (id, game, imgFile) => {
+    //Upload the image of the game
+    if (imgFile !== null){
+        await postImage("games", imgFile)
+    }
+
     const url = `/api/games/${id}`;
     try {
         const response = await axios.put(url, game)
@@ -56,4 +62,5 @@ export const putGame = async (id, game) => {
     }
     return false;
 }
+
 

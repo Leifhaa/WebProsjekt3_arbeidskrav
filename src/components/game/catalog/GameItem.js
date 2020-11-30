@@ -30,7 +30,7 @@ const StyledCol = styled(Col)`
   
   .game-item-img{
     width: 100%;
-    height: 330px;
+    height: 370px;
   }
  
 `
@@ -53,7 +53,7 @@ export const GameItem = ({id, name, price, image, ratingAvg, quantity}) => {
             //use default img
             return require("../../../assets/no-preview-available.png")
         }
-        return `/images/${image}`
+        return `/images/games/${image}`
     }
 
     const handleOnClick = useCallback(() => history.push(`/games/${id}`), [history]);
