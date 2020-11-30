@@ -5,7 +5,6 @@ import {AdminGameModal} from "./AdminGameModal";
 const StyledRow = styled.tr`
     .delete{
       color:red;
-      
     }
    
     .delete:hover{
@@ -21,20 +20,18 @@ const StyledRow = styled.tr`
     }
 `
 
-export const AdminGameItem = ({id, name}) => {
+export const AdminGameItem = ({game}) => {
     const [showModal, setShowModal] = useState(false)
-
     const handleClose = () => setShowModal(false);
     const handleShow = () => setShowModal(true);
 
 
-
     return (
         <StyledRow>
-            <td>{name}</td>
+            <td>{game.name}</td>
             <td className={"delete"}>Delete</td>
             <td className={"edit"} onClick={() => setShowModal(true)}>Edit</td>
-            {showModal && <AdminGameModal show = {showModal} handleShow={handleShow} handleClose = {handleClose}/>}
+            {showModal && <AdminGameModal show={showModal} handleShow={handleShow} handleClose={handleClose} {...game}/>}
         </StyledRow>
     )
 }

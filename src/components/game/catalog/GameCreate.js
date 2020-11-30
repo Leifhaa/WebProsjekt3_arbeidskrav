@@ -34,7 +34,6 @@ export const GameCreate = () => {
             config: {headers: {"Content-Type": "multipart/form-data"}}
             }
         )
-
     }
 
     const createGame = () => {

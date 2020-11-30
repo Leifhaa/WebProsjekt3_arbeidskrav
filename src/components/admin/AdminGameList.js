@@ -16,9 +16,9 @@ export const AdminGameList = () => {
                 <th>Click to edit</th>
                 <th>Click to delete</th>
             </tr>
-            {gamesState.map((character, index) => {
+            {gamesState.map((game, index) => {
                 return (
-                    <AdminGameItem key={index} {...character}/>
+                    <AdminGameItem key={index} game={game}/>
                 )
             })
             }

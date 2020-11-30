@@ -36,3 +36,16 @@ export const purchaseGame = async (id) => {
     return false;
 }
 
+export const updateGame = async (id, game) => {
+    const url = `/api/games/${id}`;
+    try {
+        const response = await axios.put(url, game)
+        if (response.status === 200){
+            return true;
+        }
+    } catch (error) {
+        console.log("error", error)
+    }
+    return false;
+}
+
