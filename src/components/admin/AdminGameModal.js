@@ -25,7 +25,7 @@ export const AdminGameModal = ({show,handleClose, id ,name, description, price, 
         <React.Fragment>
             <Modal show={show} onHide={handleClose}>
                 <Modal.Header closeButton>
-                    <Modal.Title>Edit character</Modal.Title>
+                    <Modal.Title>{id === null ? "Create game" : "Edit character"}</Modal.Title>
                 </Modal.Header>
                 <Modal.Body>
                     <h6>Name:</h6>

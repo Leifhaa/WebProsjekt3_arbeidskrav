@@ -2,6 +2,7 @@
 
 import React, {useState, createContext, useEffect} from 'react';
 import axios from 'axios';
+import {fetchGames} from "../services/GameApi";
 
 export const GameCatalogContext = createContext();
 
@@ -13,13 +14,7 @@ export const GameCatalogProvider = (props) => {
 
 
     useEffect(() => {
-        const url = "/api/games";
-        //Todo: Add AWait og promises og async.
-        axios.get(url)
-            .then(response => {
-                setGames(response.data);
-                setLoading(false)
-            })
+        fetchGames(setGames,setLoading)
     }, [])
 
     //returns components which should have access to this context
