@@ -36,8 +36,7 @@ namespace WebApi.Controllers
         /// <param name="game"></param>
         /// <returns></returns>
         [HttpPost]
-        [Route("games/{id:length(24)}")]
-        public ActionResult<Character> Post(string id,Character character)
+        public ActionResult<Character> Post(Character character)
         {
             _charactersService.Create(character);
             return character;
