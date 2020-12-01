@@ -1,6 +1,6 @@
 {
   "proxy": "https://localhost:44314/",
-  "name": "arbeidskrav",
+  "name": "exam",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
