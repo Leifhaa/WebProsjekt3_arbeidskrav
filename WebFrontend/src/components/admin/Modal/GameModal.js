@@ -6,7 +6,7 @@ import {GameCatalogContext} from "../../../context/GameCatalogContext";
 import {CharacterList} from "./CharacterList";
 
 //Modal is reused in both creating and editing a game
-export const GameModal = ({show, handleClose, id, name, description, price, category, quantity, ratingAvg, ratingCounter, ratingSum}) => {
+export const GameModal = ({show, handleClose, id, name, description, price, category, quantity, ratingAvg, ratingCounter, ratingSum, image}) => {
     const {games} = useContext(GameCatalogContext)
     const [gamesState, setGames] = games
     const [characters, setCharacters] = useState([])

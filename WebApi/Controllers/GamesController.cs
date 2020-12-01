@@ -69,6 +69,10 @@ namespace WebApi.Controllers{
             if (dbGame == null){
                 return NotFound();
             }
+            //Keep the image if there's not a new uploaded
+            if (gameIn.Image == null && dbGame != null){
+                gameIn.Image = dbGame.Image;
+            }
 
             _gamesService.Update(id, gameIn);
             return NoContent();

@@ -8,6 +8,7 @@ import {GameRating} from "./GameRating";
 
 const StyledCol = styled(Col)`
   text-align: center;
+  padding-bottom: 20px;
    .game-title{
      padding:10px;
      font-size:20px;

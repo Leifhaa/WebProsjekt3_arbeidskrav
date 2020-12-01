@@ -12,6 +12,14 @@ export const CharacterCreate = ({gameId, characters,setCharacters}) => {
     const [name, setName] = useState()
     const [race, setRace] = useState()
 
+    const onNameChange = (e) => {
+        setName(e.target.value);
+    }
+
+    const onRaceChange = (e) => {
+        setRace(e.target.value);
+    }
+
     const handleImgChange = (e) => {
         setImgFile(e.target.files[0])
     }
@@ -32,12 +40,14 @@ export const CharacterCreate = ({gameId, characters,setCharacters}) => {
         }
     }
 
+
+
     return (
         <StyledRow>
-            <th><input onChange={handleImgChange} type="file"/></th>
-            <th><input type="text" value={name} onChange={(e) => setName(e.target.value)}/></th>
-            <th><input type="text" value={race} onChange={(e) => setRace(e.target.value)}/></th>
-            <th><Button onClick={() => create()} className={"create btn btn-success"}>Add</Button></th>
+            <td><input onChange={handleImgChange} type="file"/></td>
+            <td><input type={"text"} onChange={onNameChange}/></td>
+            <td><input type={"text"} onChange={onRaceChange}/></td>
+            <td><Button onClick={() => create()} className={"create btn btn-success"}>Add</Button></td>
         </StyledRow>
     )
 }
