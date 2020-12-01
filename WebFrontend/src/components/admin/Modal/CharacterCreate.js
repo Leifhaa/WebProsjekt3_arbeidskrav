@@ -8,9 +8,9 @@ const StyledRow = styled.tr`
 `
 
 export const CharacterCreate = ({gameId, characters,setCharacters}) => {
-    const [imgFile, setImgFile] = useState()
-    const [name, setName] = useState()
-    const [race, setRace] = useState()
+    const [imgFile, setImgFile] = useState(null)
+    const [name, setName] = useState("")
+    const [race, setRace] = useState("")
 
     const onNameChange = (e) => {
         setName(e.target.value);
@@ -37,6 +37,7 @@ export const CharacterCreate = ({gameId, characters,setCharacters}) => {
             setCharacters([...characters, character])
             setName("")
             setRace("")
+            setImgFile(null)
         }
     }
 
@@ -45,8 +46,8 @@ export const CharacterCreate = ({gameId, characters,setCharacters}) => {
     return (
         <StyledRow>
             <td><input onChange={handleImgChange} type="file"/></td>
-            <td><input type={"text"} onChange={onNameChange}/></td>
-            <td><input type={"text"} onChange={onRaceChange}/></td>
+            <td><input onChange={onNameChange} type="text" value={name}/></td>
+            <td><input onChange={onRaceChange} type={"text"} value={race}/></td>
             <td><Button onClick={() => create()} className={"create btn btn-success"}>Add</Button></td>
         </StyledRow>
     )
